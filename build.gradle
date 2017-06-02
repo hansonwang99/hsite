@@ -3,11 +3,36 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'war'
+apply plugin: 'spring-boot'
 
+//生成的jar包包名和版本
+jar {
+    baseName = 'hansonwang99'
+    version =  '0.1.0'
+}
+
+//设置jdk的版本
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()//依赖Maven仓库
+    }
+    dependencies {
+        //使用1.5.3.RELEASE版本的Spring框架
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
+    }
+}
+
+//添加编译时的依赖
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 dependencies {

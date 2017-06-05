@@ -13,6 +13,16 @@ public class IndexController {
 
     @RequestMapping(value="/index",method= RequestMethod.GET)
     public String index(Model model) {
+        return "index";
+    }
+
+    @RequestMapping(value="/login",method= RequestMethod.GET)
+    public String login(Model model) {
         return "login";
+    }
+
+    @RequestMapping(value="/layout",method= RequestMethod.GET)
+    public String layout(Model model) {
+        return "layout";
     }
 }

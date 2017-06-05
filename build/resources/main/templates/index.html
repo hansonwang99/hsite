@@ -6,19 +6,16 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta name="description" content="云收藏 | 让收藏更简单 |收藏夹 |网络收藏夹"/>
+        <meta name="description" content="HSite"/>
         <meta name="author" content=""/>
 
         <title>HSite</title>
 
         <link rel="icon" href="/img/icon.ico" type="image/x-icon" />
-
         <!-- Bootstrap Core CSS -->
         <link href="index/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
         <!-- Theme CSS -->
-        <link href="index/css/freelancer.min.css" rel="stylesheet" />
-
+        <link href="index/css/freelancer.css" rel="stylesheet" />
         <!-- Custom Fonts -->
         <link href="index/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
@@ -42,6 +39,7 @@
         <!-- Navigation -->
         <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
             <div class="container">
+
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -64,7 +62,7 @@
                             <a href="/lookAround/standard/ALL">随便看看</a>
                         </li>-->
                         <li>
-                            <a href="/feedback">提建议</a>
+                            <a href="/feedback">意见反馈</a>
                         </li>
                         <li class="page-scroll">
                             <a href="#about">关于</a>
@@ -83,9 +81,9 @@
                     <div class="col-lg-12">
                         <img class="img-responsive" src="index/img/profile.png" alt="" />
                         <div class="intro-text">
-                            <span class="name">云收藏</span>
+                            <span class="name">HSite</span>
                             <hr class="star-light"/>
-                            <span class="skills">随时随地 - 方便快捷 - 智慧收藏</span>
+                            <span class="skills">欢迎来到我的部落</span>
                         </div>
                     </div>
                 </div>
@@ -97,87 +95,87 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2>云收藏的收藏家</h2>
+                        <h2>网站板块</h2>
                         <hr class="star-primary"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4 portfolio-item">
-                        <a th:href="'/collector/'+${collector.mostCollectUser.id}+'/0'" class="portfolio-link">
+                        <a th:href="'/index'" class="portfolio-link">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                     <p>我收藏的文章最多，我收藏我快乐！</p>
-                                    <p th:text="${collector.mostCollectUser.introduction == null ? '暂无简介' : collector.mostCollectUser.introduction.length() gt 15 ? collector.mostCollectUser.introduction.substring(0,15)+'...' : collector.mostCollectUser.introduction}">暂无简介</p>
+                                    <p th:text="'xxx'">暂无简介</p>
                                 </div>
                             </div>
                             <!--<img src="index/img/portfolio/cabin.png" class="img-responsive" alt="" />-->
-                            <img th:src="@{(${collector.mostCollectUser.profilePicture} == null ? @{/index/img/portfolio/cabin.png}:'/'+${collector.mostCollectUser.profilePicture})}" alt="" class="img-responsive"/>
+                            <img th:src="'xxx'" alt="" class="img-responsive"/>
                         </a>
                     </div>
                     <div class="col-sm-4 portfolio-item">
-                        <a th:href="'/collector/'+${collector.mostFollowedUser.id}+'/0'" class="portfolio-link">
+                        <a th:href="'/index'" class="portfolio-link">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                     <p>关注我的人最多,我是人气王！</p>
-                                    <p th:text="${collector.mostFollowedUser.introduction == null ? '暂无简介' : collector.mostFollowedUser.introduction.length() gt 15 ? collector.mostFollowedUser.introduction.substring(0,15)+'...' : collector.mostFollowedUser.introduction}">暂无简介</p>
+                                    <p th:text="'xxx'">暂无简介</p>
                                 </div>
                             </div>
                             <!--<img src="index/img/portfolio/cake.png" class="img-responsive" alt="" />-->
-                            <img th:src="@{(${collector.mostFollowedUser.profilePicture} == null ? @{/index/img/portfolio/cake.png}:'/'+${collector.mostFollowedUser.profilePicture})}" alt="" class="img-responsive"/>
+                            <img th:src="'xxx'" alt="" class="img-responsive"/>
                         </a>
                     </div>
                     <div class="col-sm-4 portfolio-item">
-                        <a th:href="'/collector/'+${collector.mostPraisedUser.id}+'/0'" class="portfolio-link">
+                        <a th:href="'/index'" class="portfolio-link">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                     <p>赞我文章的人最多，大家都来赞赞赞！</p>
-                                    <p th:text="${collector.mostPraisedUser.introduction == null ? '暂无简介' : collector.mostPraisedUser.introduction.length() gt 15 ? collector.mostPraisedUser.introduction.substring(0,15)+'...' : collector.mostPraisedUser.introduction}">暂无简介</p>
+                                    <p th:text="'xxx'">暂无简介</p>
                                 </div>
                             </div>
                             <!--<img src="index/img/portfolio/circus.png" class="img-responsive" alt="" />-->
-                            <img th:src="@{(${collector.mostPraisedUser.profilePicture} == null ? @{/index/img/portfolio/circus.png}:'/'+${collector.mostPraisedUser.profilePicture})}" alt="" class="img-responsive"/>
+                            <img th:src="'xxx'" alt="" class="img-responsive"/>
                         </a>
                     </div>
                     <div class="col-sm-4 portfolio-item">
-                        <a th:href="'/collector/'+${collector.mostCommentedUser.id}+'/0'" class="portfolio-link">
+                        <a th:href="'/index'" class="portfolio-link">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                       <p>评论我文章的人最多，快看我收藏了什么！</p>
-                                      <p th:text="${collector.mostCommentedUser.introduction == null ? '暂无简介' : collector.mostCommentedUser.introduction.length() gt 15 ? collector.mostCommentedUser.introduction.substring(0,15)+'...' : collector.mostCommentedUser.introduction}">暂无简介</p>
+                                      <p th:text="'xxx'">暂无简介</p>
                                 </div>
                             </div>
                             <!--<img src="index/img/portfolio/game.png" class="img-responsive" alt="" />-->
-                            <img th:src="@{(${collector.mostCommentedUser.profilePicture} == null ? @{/index/img/portfolio/game.png}:'/'+${collector.mostCommentedUser.profilePicture})}" alt="" class="img-responsive"/>
+                            <img th:src="'xxx'" alt="" class="img-responsive"/>
                         </a>
                     </div>
                     <div class="col-sm-4 portfolio-item">
-                        <a th:href="'/collector/'+${collector.mostPopularUser.id}+'/0'" class="portfolio-link">
+                        <a th:href="'/index'" class="portfolio-link">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                      <p>我最受欢迎，想不想关注我！</p>
-                                     <p th:text="${collector.mostPopularUser.introduction == null ? '暂无简介' : collector.mostPopularUser.introduction.length() gt 15 ? collector.mostPopularUser.introduction.substring(0,15)+'...' : collector.mostPopularUser.introduction}">暂无简介</p>
+                                     <p th:text="'xxx'">暂无简介</p>
                                 </div>
                             </div>
                             <!--<img src="index/img/portfolio/safe.png" class="img-responsive" alt=""/>-->
-                            <img th:src="@{(${collector.mostPopularUser.profilePicture} == null ? @{/index/img/portfolio/safe.png}:'/'+${collector.mostPopularUser.profilePicture})}" alt="" class="img-responsive"/>
+                            <img th:src="'xxx'" alt="" class="img-responsive"/>
                         </a>
                     </div>
                     <div class="col-sm-4 portfolio-item">
-                        <a th:href="'/collector/'+${collector.mostActiveUser.id}+'/0'" class="portfolio-link">
+                        <a th:href="'/index'" class="portfolio-link">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                      <p>近一个月我最活跃，快来超越我！</p>
-                                    <p th:text="${collector.mostActiveUser.introduction == null ? '暂无简介' : collector.mostActiveUser.introduction.length() gt 15 ? collector.mostActiveUser.introduction.substring(0,15)+'...' : collector.mostActiveUser.introduction}">暂无简介</p>
+                                    <p th:text="'xxx'">暂无简介</p>
                                 </div>
                             </div>
                             <!--<img src="index/img/portfolio/submarine.png" class="img-responsive" alt="" />-->
-                            <img th:src="@{(${collector.mostActiveUser.profilePicture} == null ? @{/index/img/portfolio/submarine.png}:'/'+${collector.mostActiveUser.profilePicture})}" alt="" class="img-responsive"/>
+                            <img th:src="'xxx'" alt="" class="img-responsive"/>
                         </a>
                     </div>
                 </div>
@@ -189,28 +187,28 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2>关于我们</h2>
+                        <h2>关于我</h2>
                         <hr class="star-light"/>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <p>我们做了一个可以在线随时随地简单收藏的一个网站
-                        <br/>可以在这个网站上分类整理收藏的网站或者文章，也可以查看别人都收藏了些什么。
-                        <br/>可以从浏览器收藏夹导入到我们的网站，也可以从我们的网站导出去做备份。
-                        <br/>根据共同的收藏可以找出我们相互兴趣的人。
-                        </p>
-                    </div>
-                    <div class="col-lg-4">
-                        <p>我们是一群热爱生活，热爱开源，热爱分享的IT人！
-                         <br/>开放、自由、分享、开源是我们的主题！
-                         <br/>当您的浏览器收藏夹收藏的网站或者文章大于1000份的时候，找东西绝对是个体力活。
-                         <br/>那就让云收藏帮您解决吧，方便分类、整理、查询、搜索。
-                         </p>
-                    </div>
+                    <!--<div class="col-lg-4 col-lg-offset-2">-->
+                        <!--<p>我们做了一个可以在线随时随地简单收藏的一个网站-->
+                        <!--<br/>可以在这个网站上分类整理收藏的网站或者文章，也可以查看别人都收藏了些什么。-->
+                        <!--<br/>可以从浏览器收藏夹导入到我们的网站，也可以从我们的网站导出去做备份。-->
+                        <!--<br/>根据共同的收藏可以找出我们相互兴趣的人。-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4">-->
+                        <!--<p>我们是一群热爱生活，热爱开源，热爱分享的IT人！-->
+                         <!--<br/>开放、自由、分享、开源是我们的主题！-->
+                         <!--<br/>当您的浏览器收藏夹收藏的网站或者文章大于1000份的时候，找东西绝对是个体力活。-->
+                         <!--<br/>那就让云收藏帮您解决吧，方便分类、整理、查询、搜索。-->
+                         <!--</p>-->
+                    <!--</div>-->
                     <div class="col-lg-8 col-lg-offset-2 text-center">
-                        <a href="https://github.com/cloudfavorites" class="btn btn-lg btn-outline">
-                            <i class="fa fa-download"></i> GITHUB--关注我们
+                        <a href="https://github.com/hansonwang99" class="btn btn-lg btn-outline">
+                            <i class="fa fa-download"></i> GITHUB--关注我
                         </a>
                     </div>
                 </div>
@@ -222,7 +220,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2>联系我们</h2>
+                        <h2>联系我</h2>
                         <hr class="star-primary"/>
                     </div>
                 </div>
@@ -230,14 +228,14 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <br/><br/><br/>
                         <p>请发邮件到这里
-                             <a href="mailto:cloudfavorites@126.com">
+                             <a href="mailto:hansonwang99@163.com">
                                 hansonwang99@163.com
                             </a>
                          </p>
                          <br/>
                          <p>或者在github上面
-                            <a  href="https://github.com/cloudfavorites">
-                                                               关注我们
+                            <a  href="https://github.com/hansonwang99">
+                                                               关注我
                             </a>
                          </p>
                     </div>
@@ -253,20 +251,20 @@
                     <div class="row">
                         <div class="footer-col col-md-4">
                             <h3>位置</h3>
-                            <p>银河系
-                                <br./>地球, 中国</p>
+                            <p>
+                                <br./>中国 ● 南京</p>
                         </div>
                         <div class="footer-col col-md-4">
-                            <h3>联系我们</h3>
+                            <h3>联系我</h3>
                             <ul class="list-inline">
                                 <li>
-                                    <a href="https://github.com/cloudfavorites" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                                    <a href="https://github.com/hansonwang99" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
                                 </li>
                             </ul>
                         </div>
                         <div class="footer-col col-md-4">
                             <h3>关于网站</h3>
-                            <p>专注于收藏、分享、开源</p>
+                            <p>分享 交流</p>
                         </div>
                     </div>
                 </div>

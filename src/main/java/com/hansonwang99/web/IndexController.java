@@ -25,4 +25,9 @@ public class IndexController {
     public String layout(Model model) {
         return "layout";
     }
+
+    @RequestMapping(value="/collector",method= RequestMethod.GET)
+    public String collector(Model model) {
+        return "collector";
+    }
 }

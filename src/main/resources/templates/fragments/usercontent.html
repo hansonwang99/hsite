@@ -138,13 +138,13 @@
     <br />
     <br />
     <br />
-    <input type="hidden" name="forward" id="forward" th:value="'/usercontent/'+${user.id}+'/0'" />
-    <input type="hidden" id="userId" th:value="${user.id}"/>
-    <input type="hidden" th:if="${myself=='YES'}" name="pageType" id="pageType" value="myself" />
-    <input type="hidden" th:if="${myself=='NO'}" name="pageType" id="pageType" value="otherpublic" />
+    <input type="hidden" name="forward" id="forward" th:value="'/usercontent/'+0+'/0'" />
+    <input type="hidden" id="userId" />
+    <input type="hidden"  name="pageType" id="pageType" value="myself" />
+    <input type="hidden"  name="pageType" id="pageType" value="otherpublic" />
     <input type="hidden" id="userContent" value="usercontent"/>
-    <input type="hidden" id="userFavoritesId" th:value="${favoritesId}"/>
-    <input type="hidden" th:if="${loginUser!=null}" id="loginUser" th:value="${loginUser.id}"/>
+    <input type="hidden" id="userFavoritesId" />
+    <input type="hidden"  id="loginUser" />
 </div>
 </body>
 <script type='text/javascript' th:inline="javascript">

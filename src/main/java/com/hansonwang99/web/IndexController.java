@@ -30,4 +30,9 @@ public class IndexController {
     public String collector(Model model) {
         return "collector";
     }
+
+    @RequestMapping(value="/home",method= RequestMethod.GET)
+    public String home(Model model) {
+        return "home";
+    }
 }

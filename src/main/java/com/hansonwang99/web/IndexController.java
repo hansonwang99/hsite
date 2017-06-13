@@ -35,4 +35,19 @@ public class IndexController {
     public String home(Model model) {
         return "home";
     }
+
+    @RequestMapping(value="/main",method= RequestMethod.GET)
+    public String main(Model model) {
+        return "main";
+    }
+
+    @RequestMapping(value="/post",method= RequestMethod.GET)
+    public String post(Model model) {
+        return "post";
+    }
+
+    @RequestMapping(value="/write",method= RequestMethod.GET)
+    public String write(Model model) {
+        return "write";
+    }
 }

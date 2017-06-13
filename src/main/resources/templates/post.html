@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'/>
+    <meta name="renderer" content="webkit"/>
+
+    <!-- Bootstrap 3.3.2 -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link href="freelancer/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css" />
+    <!-- Ionicons -->
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <!--<link rel="stylesheet" href="/static/dist/css/skins/_all-skins.min.css"/>-->
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css" />
+    <link rel="stylesheet" href="plugins/editormd/css/editormd.css" />
+    <link rel="stylesheet" href="css/inote.css" />
+    <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+<body>
+
+<div id="postOpt" class="table-responsive">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
+        <span class="glyphicon glyphicon-plus"></span>&nbsp;添加
+    </button>
+</div>
+<div id="postList">
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>标签</th>
+            <th>发布时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <div class="form-group">
+        <button id="loadNextPageBtn" class="btn btn-primary form-control"><input type="hidden" name="" id="pageIndex" value="1"/><span id="loadTip">加载更多</span></button>
+    </div>
+
+    <span class="fix-height"></span>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-editor">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">写文章</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="postTitle">标题</label>
+                            <input type="text" class="form-control" id="postTitle"/>
+                            <input type="hidden" name="" id="postId"/>
+                            <input type="hidden" name="" id="postContent"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="postTag">标签</label>
+                            <input type="text" class="form-control" id="postTag"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <iframe id="postContentIframe" src="#" name="postContentIframe" frameborder="0" width="100%" height="620" scrolling="no"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="savePost">保存</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+
+<!-- Bootstrap 3.3.2 JS -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src='plugins/fastclick/fastclick.min.js'></script>
+<!-- AdminLTE App -->
+<script src="js/jquery.form.min.js"></script>
+<script src="js/json2-min.js"></script>
+<script src="js/jquery.md5.js"></script>
+<script src="plugins/editormd/editormd.min.js"></script>
+<script src="plugins/highlight/js/highlight.min.js"></script>
+<script src="dist/js/app.min.js"></script>
+<script src="js/util.js"></script>
+
+<!-- jQuery -->
+<script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="freelancer/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="freelancer/js/jquery.easing.min.js"></script>
+<script src="freelancer/js/classie.js"></script>
+<script src="freelancer/js/cbpAnimatedHeader.js"></script>
+
+<!-- Message Form JavaScript -->
+<script src="freelancer/js/jqBootstrapValidation.js"></script>
+
+<!-- Custom JavaScript -->
+<script src="freelancer/js/freelancer.js"></script>
+<script src="plugins/painlayer/js/jquery.plainoverlay.min.js"></script>
+<script src="js/marked.min.js"></script>
+<script src="plugins/highlight/js/highlight.min.js"></script>
+<script src="js/json2-min.js"></script>
+<script src="plugins/venobox/venobox.min.js"></script>
+<script src="js/util.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+
+    alert("xxxx");
+
+    $(function () {
+
+        alert("yyyyyy");
+
+        $postModal = $('#postModal');
+
+        $postModal.on('show.bs.modal', function(event) {
+
+            alert("xxxxxxxx");
+
+            $('#postContentIframe').attr('src', 'write');
+            var $button = $(event.relatedTarget);
+
+            if ($button.attr('class').indexOf("post-update") > 0) {
+                var postId = $button.find('input[type="hidden"]:eq(0)').val();
+                $.get('/i/posts/' + postId, function (res) {
+                    if (res.success) {
+                        var post = res.data.post;
+                        $('#postId').val(postId);
+                        $('#postTitle').val(vlidField(post.title));
+                        $('#postTag').val(vlidField(post.tag));
+                        $('#postContent').val(post.content);
+                    } else {
+                        alert(res.msg);
+                    }
+
+                });
+
+            } else {
+                $('#postId').val('');
+                $('#postTitle').val('');
+                $('#postTag').val('');
+                $('#postContent').val('');
+            }
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

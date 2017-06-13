@@ -148,17 +148,11 @@
 
 <script>
 
-    alert("xxxx");
-
     $(function () {
-
-        alert("yyyyyy");
 
         $postModal = $('#postModal');
 
         $postModal.on('show.bs.modal', function(event) {
-
-            alert("xxxxxxxx");
 
             $('#postContentIframe').attr('src', 'write');
             var $button = $(event.relatedTarget);

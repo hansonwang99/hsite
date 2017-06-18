@@ -13,6 +13,7 @@
   <link rel="stylesheet" th:href="@{/media/css/app.css}" id="maincss"></link>
   <link rel="stylesheet" th:href="@{/media/css/theme-i.css}" id="maincss"></link>
  </head>
+
   <body>
     <div class="wrapper">
       <div class="block-center mt-xl wd-xl">
@@ -24,7 +25,8 @@
             </div>
             <div class="panel-body" id="loginPage">
                <p class="text-center pv">请登录</p>
-               <form id="form" data-parsley-validate="true" onsubmit="return false">
+
+                <form id="form" data-parsley-validate="true" onsubmit="return false">
                   <div class="form-group has-feedback">
                      <input type="text" placeholder="邮箱地址或登录名称" v-model="username" class="form-control" data-parsley-error-message="请输入邮箱地址或登录名称" required="required" />
                      <span class="fa fa-envelope form-control-feedback text-muted"></span>
@@ -40,7 +42,7 @@
                   </div>
                   <button v-on:click="login" class="btn btn-block btn-primary mt-lg">登录</button>
                </form>
-               
+
                <p></p>
                <div id="errorMsg" class="alert alert-danger text-center" style="display:none;"></div>
                <p class="pt-lg text-center">需要注册？</p>
@@ -58,12 +60,14 @@
       </div>
    </div>
   </body>
+
    <script th:src="@{/webjars/jquery/2.2.4/dist/jquery.min.js}"></script>   
    <script th:src="@{/webjars/vue/1.0.24/vue.min.js}"></script>   
    <script th:src="@{/webjars/vue-resource/0.7.0/dist/vue-resource.min.js}"></script>
    <script th:src="@{/vendor/parsleyjs/dist/parsley.min.js}"></script> 
    <script type='text/javascript'>
-    Vue.http.options.emulateJSON = true; 
+
+       Vue.http.options.emulateJSON = true;
         var loginPage = new Vue({
             el: '#loginPage',
             data: {
@@ -72,6 +76,9 @@
             },
             methods: {
             	login: function(event){
+
+
+
             		var ok = $('#form').parsley().isValid({force: true});
             		if(!ok){
             			return;
@@ -81,6 +88,9 @@
             				 passWord: this.password
 	            			 };
             	    this.$http.post('/user/login',datas).then(function(response){
+
+                        alert("hello world");
+
             	    	 if(response.data.rspCode == '000000'){
             	    			 window.open(response.data.data, '_self');
             	    	 }else{
@@ -88,10 +98,11 @@
             	    		  $("#errorMsg").show();
             	    	 }
                      }, function(response){
-                         console.log('error');
+                         console.log('error error error');
                      })
                 }
             }
         })
+
     </script>
 </html>

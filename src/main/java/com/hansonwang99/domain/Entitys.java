@@ -1,8 +1,8 @@
-package com.favorites.domain;
-
-import java.io.Serializable;
+package com.hansonwang99.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.io.Serializable;
 
 public class Entitys implements Serializable{
 	private static final long serialVersionUID = 1L;

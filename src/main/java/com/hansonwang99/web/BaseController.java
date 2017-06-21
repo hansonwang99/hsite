@@ -1,11 +1,11 @@
 package com.hansonwang99.web;
 
-import com.favorites.comm.Const;
-import com.favorites.domain.User;
-import com.favorites.domain.result.ExceptionMsg;
-import com.favorites.domain.result.Response;
-import com.favorites.utils.Des3EncryptionUtil;
-import com.favorites.utils.MD5Util;
+import com.hansonwang99.comm.Const;
+import com.hansonwang99.domain.User;
+import com.hansonwang99.domain.result.ExceptionMsg;
+import com.hansonwang99.domain.result.Response;
+import com.hansonwang99.utils.Des3EncryptionUtil;
+import com.hansonwang99.utils.MD5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;

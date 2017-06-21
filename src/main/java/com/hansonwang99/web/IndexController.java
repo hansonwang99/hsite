@@ -50,4 +50,9 @@ public class IndexController {
     public String write(Model model) {
         return "write";
     }
+
+    @RequestMapping(value="/register",method= RequestMethod.GET)
+    public String register(Model model) {
+        return "register";
+    }
 }

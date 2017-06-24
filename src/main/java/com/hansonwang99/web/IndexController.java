@@ -1,15 +1,19 @@
 package com.hansonwang99.web;
 
+import com.hansonwang99.comm.Const;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Created by hansonwang on 2017/6/2.
  */
 @Controller
-public class IndexController {
+public class IndexController extends BaseController {
 
     @RequestMapping(value="/index",method= RequestMethod.GET)
     public String index(Model model) {
@@ -33,6 +37,9 @@ public class IndexController {
 
     @RequestMapping(value="/home",method= RequestMethod.GET)
     public String home(Model model) {
+
+        model.addAttribute("user",getUser());
+        System.out.println(getUser().getUserName());
         return "home";
     }
 
@@ -54,5 +61,17 @@ public class IndexController {
     @RequestMapping(value="/register",method= RequestMethod.GET)
     public String register(Model model) {
         return "register";
+    }
+
+    @RequestMapping(value="/logout",method=RequestMethod.GET)
+    public String logout(HttpServletResponse response, Model model) {
+        getSession().removeAttribute(Const.LOGIN_SESSION_KEY);
+        getSession().removeAttribute(Const.LAST_REFERER);
+        Cookie cookie = new Cookie(Const.LOGIN_SESSION_KEY, "");
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        return "index";
     }
 }

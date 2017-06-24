@@ -76,9 +76,6 @@
             },
             methods: {
             	login: function(event){
-
-
-
             		var ok = $('#form').parsley().isValid({force: true});
             		if(!ok){
             			return;
@@ -88,8 +85,6 @@
             				 passWord: this.password
 	            			 };
             	    this.$http.post('/user/login',datas).then(function(response){
-
-                        alert("hello world");
 
             	    	 if(response.data.rspCode == '000000'){
             	    			 window.open(response.data.data, '_self');

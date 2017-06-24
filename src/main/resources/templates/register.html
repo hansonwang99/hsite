@@ -83,7 +83,7 @@
 	            			 };
             	    this.$http.post('/user/regist',datas).then(function(response){
             	    	 if(response.data.rspCode == '000000'){
-            	    		  window.open('/home', '_self');
+            	    		  window.open('/login', '_self');
             	    	 }else{
             	    		 $("#errorMsg").html(response.data.rspMsg);
            	    		  	 $("#errorMsg").show();

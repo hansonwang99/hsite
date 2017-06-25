@@ -20,7 +20,7 @@ public class Article implements Serializable {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long publish_at;
 
     @Column(nullable = true, columnDefinition = "Text")

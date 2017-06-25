@@ -43,7 +43,7 @@
     <!-- Modal -->
     <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-editor">
-            <div class="modal-content">
+            <div class="modal-content" id="savaArticlePage">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -56,7 +56,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label for="postTitle">标题</label>
-                                <input type="text" class="form-control" id="postTitle"/>
+                                <input type="text" class="form-control" id="postTitle" v-model="title"/>
                                 <input type="hidden" name="" id="postId"/>
                                 <input type="hidden" name="" id="postContent"/>
                             </div>
@@ -64,7 +64,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="postTag">标签</label>
-                                <input type="text" class="form-control" id="postTag"/>
+                                <input type="text" class="form-control" id="postTag" v-model="tag"/>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="savePost">保存</button>
+                    <button v-on:click="savaarticle" type="button" class="btn btn-primary" id="savePost">保存</button>
                 </div>
 
             </div>
@@ -136,6 +136,8 @@
     <script src="js/util.js"></script>
     <script src="js/main.js"></script>
 
+    <script th:src="@{/webjars/vue/1.0.24/vue.min.js}"></script>
+    <script th:src="@{/webjars/vue-resource/0.7.0/dist/vue-resource.min.js}"></script>
 
     <script th:inline="javascript">
 	/*<![CDATA[*/
@@ -190,6 +192,51 @@
 
         });
 
+    </script>
+
+    <script type='text/javascript'>
+
+        alert("enter js");
+
+        Vue.http.options.emulateJSON = true;
+        var savaArticlePage = new Vue({
+            el: '#savaArticlePage',
+            data: {
+                'title': '',
+                'tag': '',
+                'content': ''
+            },
+            methods: {
+                savaarticle: function(event){
+
+                    alert("press button");
+
+                    var editorContentArea = $(window.frames["postContentIframe"].document).find("#editormd>textarea");
+                    var content = editorContentArea.val();
+
+                    alert(content);
+
+                    var datas={
+                        title: this.title,
+                        tag: this.tag,
+                        content: content
+                    };
+                    this.$http.post('/article/savaarticle',datas).then(function(response){
+
+                        alert("success");
+
+//                        if(response.data.rspCode == '000000'){
+//                            window.open('/login', '_self');
+//                        }else{
+//                            $("#errorMsg").html(response.data.rspMsg);
+//                            $("#errorMsg").show();
+//                        }
+                    }, function(response){
+                        console.log('error');
+                    })
+                }
+            }
+        })
     </script>
 
 </body>

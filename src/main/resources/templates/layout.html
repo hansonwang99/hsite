@@ -140,18 +140,21 @@
     <script th:src="@{/webjars/vue-resource/0.7.0/dist/vue-resource.min.js}"></script>
 
     <script th:inline="javascript">
-	/*<![CDATA[*/
-	    var size = /*[[${size}]]*/ 0;
-	    if(size!=null && size>0){
-	    	locationUrl('/standard/my/0','home');
-		  }else{
-//			  locationUrl('/tool','tool');
-		  }
-	    var config = /*[[${config}]]*/;
-		if(null != config){
-			$("#layoutConfigId").val(config.id);
-		}
-	/*]]>*/
+
+        locationUrl('/standard/my/0','home');
+
+//	/*<![CDATA[*/
+//	    var size = /*[[${size}]]*/ 0;
+//	    if(size!=null && size>0){
+//	    	locationUrl('/standard/my/0','home');
+//		  }else{
+////			  locationUrl('/tool','tool');
+//		  }
+//	    var config = /*[[${config}]]*/;
+//		if(null != config){
+//			$("#layoutConfigId").val(config.id);
+//		}
+//	/*]]>*/
 
 	</script>
 

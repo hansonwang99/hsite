@@ -18,9 +18,15 @@ public class Article implements Serializable {
     private Long id;
 
     @Column(nullable = false)
+    private Long userId;
+
+    @Column(nullable = false)
+    private Long categoryId;
+
+    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Long publish_at;
 
     @Column(nullable = true, columnDefinition = "Text")
@@ -38,6 +44,20 @@ public class Article implements Serializable {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+    public void setUserId( Long userId ) {
+        this.userId = userId;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+    public void setCategoryId( Long categoryId ) {
+        this.categoryId = categoryId;
     }
 
     public String getTitle() {

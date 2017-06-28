@@ -3,7 +3,9 @@ package com.hansonwang99.web;
 import com.hansonwang99.domain.Article;
 import com.hansonwang99.domain.result.ExceptionMsg;
 import com.hansonwang99.domain.result.Response;
+import com.hansonwang99.domain.result.ResponseData;
 import com.hansonwang99.repository.ArticleRepository;
+import com.hansonwang99.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,16 +22,18 @@ public class ArticleController extends BaseController {
     private ArticleRepository articleRepository;
 
     @RequestMapping(value = "/savaarticle", method = RequestMethod.POST)
-    public Response create(Article article) {
+    public ResponseData create(Article article) {
+
         try {
-
-            System.out.println(article.getContent());
+            article.setPublish_at( DateUtils.getCurrentTime() ); // 当前时间
+            article.setUserId( getUserId() );                    // userId目前从内存中获取
+            article.setCategoryId( 0l );                         // 目前所有categoryId都是0
             articleRepository.save( article );
+            return new ResponseData(ExceptionMsg.SUCCESS, "/home");
         } catch (Exception e) {
-
-            logger.error("create user failed, ", e);
-            return result(ExceptionMsg.FAILED);
+            logger.error("create article failed, ", e);
+            return new ResponseData(ExceptionMsg.FAILED);
         }
-        return result();
+
     }
 }

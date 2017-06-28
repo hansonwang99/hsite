@@ -46,6 +46,6 @@ public class HomeController extends BaseController {
 
 //        return "article/standard";
         model.addAttribute("user",getUser());
-        return "home";
+        return null;
     }
 }

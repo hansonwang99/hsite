@@ -1,6 +1,7 @@
 package com.hansonwang99.repository;
 
 import com.hansonwang99.domain.Article;
+import com.hansonwang99.domain.view.ArticleView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +16,5 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
             + "from Article a";
 
     @Query(baseSql+ " where a.userId=?1 ")
-    Page<Article> findArticleByUserId(Long userId, Pageable pageable);
+    Page<ArticleView> findArticleByUserId(Long userId, Pageable pageable);
 }

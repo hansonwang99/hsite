@@ -1,6 +1,7 @@
 package com.hansonwang99.service.impl;
 
 import com.hansonwang99.domain.Article;
+import com.hansonwang99.domain.view.ArticleView;
 import com.hansonwang99.repository.ArticleRepository;
 import com.hansonwang99.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +27,18 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getArticles(String type, Long userId, Pageable pageable) {
 
-        Page<Article> articles = null;
-        articles = articleRepository.findArticleByUserId( userId, pageable );
-        return convertArticle( articles, userId );
+        Page<ArticleView> articleViews = null;
+        articleViews = articleRepository.findArticleByUserId( userId, pageable );
+        return convertArticle( articleViews, userId );
     }
 
-    private List<Article> convertArticle( Page<Article> articles, Long userId ) {
+    private List<Article> convertArticle( Page<ArticleView> articleViews, Long userId ) {
 
         List<Article> articleList = new ArrayList<Article>();
 
-        for( Article article : articles ) {
+        for( ArticleView view : articleViews ) {
+
+            Article article = new Article( view );
             articleList.add( article );
         }
         

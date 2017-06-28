@@ -1,5 +1,7 @@
 package com.hansonwang99.domain;
 
+import com.hansonwang99.domain.view.ArticleView;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +36,17 @@ public class Article implements Serializable {
 
     @Column(nullable = false)
     private String tag;
+
+    public Article( ArticleView view ) {
+
+        this.id = view.getId();
+        this.userId = view.getUserId();
+        this.categoryId = view.getCategoryId();
+        this.title = view.getTitle();
+        this.publish_at = view.getPublish_at();
+        this.content = view.getContent();
+        this.tag = view.getTag();
+    }
 
     public Article() {
         super();

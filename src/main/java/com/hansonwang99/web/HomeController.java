@@ -28,8 +28,6 @@ public class HomeController extends BaseController {
     public String standard( Model model, @RequestParam(value = "page", defaultValue = "0") Integer page,
                            @RequestParam(value = "size", defaultValue = "15") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId) {
 
-        System.out.println( "jinru" );
-
         Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = new PageRequest(page, size, sort);
 
@@ -40,12 +38,12 @@ public class HomeController extends BaseController {
             }
         }
 
-        model.addAttribute("articles", articles);
-
+        System.out.println( "Enter into @RequestMapping(value=\"/standard/{type}/{userId}\")" );
         System.out.println( articles.size() );
 
-//        return "article/standard";
-        model.addAttribute("user",getUser());
-        return null;
+        model.addAttribute("articles", articles);
+        model.addAttribute("userId",getUserId());
+
+        return "article/standard";
     }
 }

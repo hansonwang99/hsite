@@ -11,4 +11,6 @@ import java.util.List;
 public interface ArticleService {
 
     public List<Article> getArticles( String type, Long userId, Pageable pageable );
+
+    public Article getOneArticle( Long articleId );
 }

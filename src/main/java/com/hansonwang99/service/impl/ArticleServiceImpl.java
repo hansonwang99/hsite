@@ -32,6 +32,12 @@ public class ArticleServiceImpl implements ArticleService {
         return convertArticle( articleViews, userId );
     }
 
+    @Override
+    public Article getOneArticle( Long articleId ) {
+
+        return articleRepository.fetchOneArticleByArticleId( articleId );
+    }
+
     private List<Article> convertArticle( Page<ArticleView> articleViews, Long userId ) {
 
         List<Article> articleList = new ArrayList<Article>();

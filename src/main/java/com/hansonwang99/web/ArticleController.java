@@ -5,11 +5,11 @@ import com.hansonwang99.domain.result.ExceptionMsg;
 import com.hansonwang99.domain.result.Response;
 import com.hansonwang99.domain.result.ResponseData;
 import com.hansonwang99.repository.ArticleRepository;
+import com.hansonwang99.service.ArticleService;
 import com.hansonwang99.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Administrator on 2017/6/25.
@@ -20,6 +20,9 @@ public class ArticleController extends BaseController {
 
     @Autowired
     private ArticleRepository articleRepository;
+
+    @Autowired
+    private ArticleService articleService;
 
     @RequestMapping(value = "/savaarticle", method = RequestMethod.POST)
     public ResponseData create(Article article) {
@@ -35,5 +38,13 @@ public class ArticleController extends BaseController {
             return new ResponseData(ExceptionMsg.FAILED);
         }
 
+    }
+
+    @RequestMapping(value = "/fetcharticle/standard/{articleId}", method = RequestMethod.GET)
+    public String fetchOneArticle(Model model, @PathVariable("articleId") Long articleId ) {
+
+        Article article = articleService.getOneArticle( articleId );
+
+        return null;
     }
 }

@@ -152,7 +152,7 @@
 
                                        <h3 class="hidden-xs media-heading resource-card-title">
 
-                                          <a target="_blank" th:onclick="'saveLookRecord(' + ${article.id} + ');'" href="#" th:text="${article.title}">title</a>
+                                          <a target="_blank" href="javascript:void(0);" th:onclick=" 'locationUrl(\'/fetcharticle/standard/' + ${article.id} +'\',\'\');' " th:text="${article.title}">title</a>
 
                                        </h3>
 
@@ -304,6 +304,7 @@
 
   </body>
 
+  <script th:src="@{/js/comm.js}" ></script>
   <script th:src="@{/webjars/vue/1.0.24/vue.min.js}"></script>
   <script th:src="@{/webjars/vue-resource/0.7.0/dist/vue-resource.min.js}"></script>
   <script th:src="@{/vendor/parsleyjs/dist/parsley.min.js}"></script>

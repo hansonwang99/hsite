@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.Convert;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,7 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article getOneArticle( Long articleId ) {
 
-        return articleRepository.fetchOneArticleByArticleId( articleId );
+        return articleRepository.findById( articleId );
     }
 
     private List<Article> convertArticle( Page<ArticleView> articleViews, Long userId ) {

@@ -18,6 +18,5 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query(baseSql+ " where a.userId=?1 ")
     Page<ArticleView> findArticleByUserId(Long userId, Pageable pageable);
 
-    @Query(baseSql+ " where a.id=?1 ")
-    Article fetchOneArticleByArticleId( Long articleId );
+    Article findById( Long articleId );
 }

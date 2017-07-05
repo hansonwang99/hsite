@@ -38,12 +38,19 @@ public class HomeController extends BaseController {
             }
         }
 
-        System.out.println( "Enter into @RequestMapping(value=\"/standard/{type}/{userId}\")" );
-        System.out.println( articles.size() );
-
         model.addAttribute("articles", articles);
         model.addAttribute("userId",getUserId());
 
         return "article/standard";
+    }
+
+    @RequestMapping(value = "/fetcharticle/standard/{articleId}")
+    public String fetchOneArticle(Model model, @PathVariable("articleId") Long articleId ) {
+
+        System.out.println( "Enter into /fetcharticle/standard/{articleId}" );
+
+        Article article = articleService.getOneArticle( articleId );
+        model.addAttribute("article", article);
+        return "article/article";
     }
 }

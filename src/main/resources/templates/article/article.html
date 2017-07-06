@@ -71,6 +71,8 @@
                   },
                   success: function(article){
 
+                      $('#postTitle').text(vlidField(article.title));
+                      $('#postTag').text(vlidField(article.tag));
                       $('#postContent').html(marked( article.content ));
                       $('pre code', '#postContent').each(function(i, block) {
                           hljs.highlightBlock(block);

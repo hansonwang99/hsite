@@ -4,6 +4,7 @@ import com.hansonwang99.domain.Article;
 import com.hansonwang99.domain.view.ArticleView;
 import com.hansonwang99.repository.ArticleRepository;
 import com.hansonwang99.service.ArticleService;
+import com.hansonwang99.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,6 +47,7 @@ public class ArticleServiceImpl implements ArticleService {
         for( ArticleView view : articleViews ) {
 
             Article article = new Article( view );
+            article.setCreate_time( DateUtils.getTimeFormatText( article.getPublish_at() ) );
             articleList.add( article );
         }
         

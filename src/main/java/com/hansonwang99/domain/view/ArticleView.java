@@ -10,6 +10,7 @@ public interface ArticleView {
     Long getCategoryId();
     String getTitle();
     Long getPublish_at();
+    String getCreate_time();
     String getContent();
     String getTag();
 }

@@ -32,6 +32,9 @@ public class Article implements Serializable {
     private Long publish_at;
 
     @Column(nullable = true, columnDefinition = "Text")
+    private String create_time;
+
+    @Column(nullable = true, columnDefinition = "Text")
     private String content;
 
     @Column(nullable = false)
@@ -44,6 +47,7 @@ public class Article implements Serializable {
         this.categoryId = view.getCategoryId();
         this.title = view.getTitle();
         this.publish_at = view.getPublish_at();
+        this.create_time = view.getCreate_time();
         this.content = view.getContent();
         this.tag = view.getTag();
     }
@@ -85,6 +89,13 @@ public class Article implements Serializable {
     }
     public void setPublish_at(Long publish_at) {
         this.publish_at = publish_at;
+    }
+
+    public String getCreate_time() {
+        return create_time;
+    }
+    public void setCreate_time( String create_time ) {
+        this.create_time = create_time;
     }
 
     public String getContent() {

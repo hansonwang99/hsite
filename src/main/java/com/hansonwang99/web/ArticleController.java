@@ -21,6 +21,9 @@ public class ArticleController extends BaseController {
     @Autowired
     private ArticleRepository articleRepository;
 
+    @Autowired
+    private ArticleService articleService;
+
     @RequestMapping(value = "/savaarticle", method = RequestMethod.POST)
     public ResponseData create(Article article) {
 
@@ -35,6 +38,13 @@ public class ArticleController extends BaseController {
             return new ResponseData(ExceptionMsg.FAILED);
         }
 
+    }
+
+    @RequestMapping(value = "/fetcharticle/standard/{articleId}")
+    public Article fetchOneArticle(@PathVariable("articleId") Long articleId ) {
+
+        Article article = articleService.getOneArticle( articleId );
+        return article;
     }
 
 }

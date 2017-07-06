@@ -28,6 +28,8 @@
                  <div class="col-md-10 col-md-offset-1" id="postContent"> 文章内容 </div>
              </div>
 
+             <input type="hidden" id="articleId" th:value="${articleId}" />
+
          </div>
 
       </section>
@@ -61,7 +63,22 @@
 
           $(function(){
 
-              $('#postContent').html(marked( ${article.content} ));
+              $.ajax({
+                  async: false,
+                  type: 'POST',
+                  dataType: 'json',
+                  url: '/article/fetcharticle/standard/' +$("#articleId").val(),
+                  error : function(XMLHttpRequest, textStatus, errorThrown) {
+                      console.log(XMLHttpRequest);
+                      console.log(textStatus);
+                      console.log(errorThrown);
+                  },
+                  success: function(article){
+
+                      $('#postContent').html(marked( article.content ));
+                  }
+              });
+
           });
 
       </script>

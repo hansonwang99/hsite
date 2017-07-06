@@ -44,13 +44,11 @@ public class HomeController extends BaseController {
         return "article/standard";
     }
 
-    @RequestMapping(value = "/fetcharticle/standard/{articleId}")
-    public String fetchOneArticle(Model model, @PathVariable("articleId") Long articleId ) {
+    @RequestMapping(value = "/showarticle/{articleId}")
+    public String fetchOneArticle( Model model, @PathVariable("articleId") Long articleId ) {
 
-        System.out.println( "Enter into /fetcharticle/standard/{articleId}" );
-
-        Article article = articleService.getOneArticle( articleId );
-        model.addAttribute("article", article);
+        model.addAttribute("articleId", articleId);
         return "article/article";
     }
+
 }

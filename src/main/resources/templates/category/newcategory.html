@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='favorites'">
+
+    <script th:src="@{/vendor/parsleyjs/dist/parsley.min.js}"></script>
+    <script th:src="@{/vendor/toastr/toastr.min.js}"></script>
+</head>
+<body>
+      <section>
+         <div class="content-wrapper">
+            <h3>新建文章分类</h3>
+            <div class="row">
+               <div class="col-md-3">
+                  <form id="form" data-parsley-validate="true" onsubmit="return false">
+                     <div class="form-group">
+                        <input id="name" type="text" class="form-control" placeholder="分类名称" data-parsley-error-message="请输入分类名" required="required"/>
+                     </div>
+                     <button id="addCategory" class="btn btn-block btn-primary mt-lg">提交</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </section>
+</body>
+
+
+
+ <script type='text/javascript'>
+ $(function(){
+
+	 toastr.options = {
+	            'closeButton': true,
+	            'positionClass': 'toast-top-center',
+	            'timeOut': '5000',
+	         };
+	 $("#addCategory").click(function(){
+
+//		 var ok = $('#form').parsley().isValid({force: true});
+//		 if(true){
+
+			 $.ajax({
+					async: false,
+					type: 'POST',
+					dataType: 'json',
+					data:'name=' + $("#name").val(),
+					url: '/category/add',
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log(XMLHttpRequest);
+						console.log(textStatus);
+						console.log(errorThrown);
+					},
+					success: function(response){
+						if(response.rspCode == '000000'){
+							 loadFavorites();
+							 toastr.success('创建成功！', '操作成功');
+          	    	 	}else{
+          	    			toastr.error(response.rspMsg, '操作失败');
+          	    	 }
+					}
+				});
+//		 }
+	 });
+ });
+ </script>
+</html>

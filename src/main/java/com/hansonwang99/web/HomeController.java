@@ -33,6 +33,12 @@ public class HomeController extends BaseController {
 
         List<Article> articles = null;
         if ( "my".equals(type) ) {
+
+            if ( null!=userId && 0==userId ) {
+                articles = articleService.getArticles( type, getUserId(), pageable );
+            }
+        } else {
+
             if ( null!=userId && 0==userId ) {
                 articles = articleService.getArticles( type, getUserId(), pageable );
             }

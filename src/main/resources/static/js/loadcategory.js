@@ -82,8 +82,6 @@ function loadFollows(){
 
 function initFavorites(categories){
 
-    alert(categories[0].name);
-
     $("#favoritesSelect").empty();
     for(var i=0;i<categories.length;i++){
         var id = categories[i].id ;

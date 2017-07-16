@@ -30,7 +30,6 @@ public class ArticleController extends BaseController {
         try {
             article.setPublish_at( DateUtils.getCurrentTime() ); // 当前时间
             article.setUserId( getUserId() );                    // userId目前从内存中获取
-            article.setCategoryId( 0l );                         // 目前所有categoryId都是0
             articleRepository.save( article );
             return new ResponseData(ExceptionMsg.SUCCESS, "/home");
         } catch (Exception e) {

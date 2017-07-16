@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="postTag">分类</label>
+                                <label for="postCategory">分类</label>
                                 <select id="postCategory" class="form-control">
                                 </select>
                             </div>
@@ -215,17 +215,20 @@
             data: {
                 'title': '',
                 'tag': '',
-                'content': ''
+                'content': '',
+                'category': ''
             },
             methods: {
                 savaarticle: function(event){
 
                     var editorContentArea = $(window.frames["postContentIframe"].document).find("#editormd>textarea");
                     var content = editorContentArea.val();
+                    var categoryId = document.getElementById("postCategory").value
                     var datas={
                         title: this.title,
                         tag: this.tag,
-                        content: content
+                        content: content,
+                        categoryId: categoryId
                     };
                     this.$http.post('/article/savaarticle',datas).then(function(response){
 

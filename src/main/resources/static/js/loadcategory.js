@@ -107,6 +107,8 @@ function initFavorites(categories){
             favorite=favorite+"<span>"+name+"</span>";
             favorite=favorite+"</a></li>";
             $("#newCategory").after(favorite)
+
+            $("#postCategory").append("<option value='"+ id +"'>"+name+"</option>");
         }
         //collct favorites
         $("#favoritesSelect").append("<option value=\"" + id + "\">" + name + "</option>");

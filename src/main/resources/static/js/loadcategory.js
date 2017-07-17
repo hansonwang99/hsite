@@ -83,6 +83,7 @@ function loadFollows(){
 function initFavorites(categories){
 
     $("#favoritesSelect").empty();
+    $("#postCategory").empty();
     for(var i=0;i<categories.length;i++){
         var id = categories[i].id ;
         var name = categories[i].name;

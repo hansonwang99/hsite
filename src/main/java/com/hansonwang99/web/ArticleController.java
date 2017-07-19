@@ -38,6 +38,8 @@ public class ArticleController extends BaseController {
 
             article.setPublish_at( DateUtils.getCurrentTime() ); // 当前时间
             article.setUserId( getUserId() );                    // userId目前从内存中获取
+            article.setUserName( getUserName() );
+            article.setCategoryName( categoryRepository.findById(article.getCategoryId()).getName() );
             articleRepository.save( article );
             return new ResponseData(ExceptionMsg.SUCCESS, "/home");
         } catch (Exception e) {

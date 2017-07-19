@@ -14,6 +14,8 @@ import java.util.List;
  */
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
+    Category findById( Long categoryId );
+
     Category findByUserIdAndName( Long userId, String name );
 
     List<Category> findByUserIdOrderByIdDesc(Long userId);
@@ -22,4 +24,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Transactional
     @Query("update Category c set c.count=(c.count+1),c.lastModifyTime =:lastModifyTime where c.id =:id")
     void increaseCountById(@Param("id") Long id, @Param("lastModifyTime") Long lastModifyTime);
+
+
 }

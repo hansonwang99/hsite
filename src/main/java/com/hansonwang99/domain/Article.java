@@ -23,7 +23,13 @@ public class Article implements Serializable {
     private Long userId;
 
     @Column(nullable = false)
+    private String userName;
+
+    @Column(nullable = false)
     private Long categoryId;
+
+    @Column(nullable = false)
+    private String categoryName;
 
     @Column(nullable = false)
     private String title;
@@ -44,7 +50,9 @@ public class Article implements Serializable {
 
         this.id = view.getId();
         this.userId = view.getUserId();
+        this.userName = view.getUserName();
         this.categoryId = view.getCategoryId();
+        this.categoryName = view.getCategoryName();
         this.title = view.getTitle();
         this.publish_at = view.getPublish_at();
         this.create_time = view.getCreate_time();
@@ -70,11 +78,25 @@ public class Article implements Serializable {
         this.userId = userId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public Long getCategoryId() {
         return categoryId;
     }
     public void setCategoryId( Long categoryId ) {
         this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getTitle() {
@@ -111,4 +133,5 @@ public class Article implements Serializable {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
 }

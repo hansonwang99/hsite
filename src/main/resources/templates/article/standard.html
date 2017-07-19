@@ -106,7 +106,7 @@
 
                                        <div class="m0">
 
-                                          <a href="javascript:void(0);" class="text-muted" th:text="article.userName" th:onclick="'locationUrl(\'/user/' + ${article.userId} + '/0\',\'\');'" >user name</a>
+                                          <a href="javascript:void(0);" class="text-muted" th:text="${article.userName}" th:onclick="'locationUrl(\'/user/' + ${article.userId} + '/0\',\'\');'" >user name</a>
 
                                           <a th:if="${userId == article.userId}" th:id="'private' + ${article.id}"   class="deco-none"  title="设为私密"  href="javascript:void(0);"  th:style="'display:' + 'none' + ''"  th:onclick="'changePrivacy(' + ${article.id} + ',\'PRIVATE\');'">
 
@@ -128,7 +128,7 @@
 
                                  </div>
 
-                                  <div class="m0" >collect.remark</div>
+                                  <!--<div class="m0" >collect.remark</div>-->
 
                                  <div class="media resource-card-thumbnail">
 
@@ -168,7 +168,7 @@
 
                                     <!--<a href="javascript:void(0);" class="normal-color-a ng-binding" th:if="${otherPeople == null}"   th:text="${collect.favoriteName}" th:onclick="'locationUrl(\'/standard/' + ${collect.favoriteId} + '/0\',\''+ ${collect.favoriteId} + '\');'" >文件加名称</a>-->
 
-                                    <a href="javascript:void(0);" class="normal-color-a ng-binding"   th:onclick="'locationUrl(\'/standard/' + '0' + '/'+${article.userId}+'\',\''+ ${article.categoryId} + '\');'" >文件加名称</a>
+                                    <a href="javascript:void(0);" class="normal-color-a ng-binding"  th:text="${article.categoryName}" th:onclick="'locationUrl(\'/standard/' + '0' + '/'+${article.userId}+'\',\''+ ${article.categoryId} + '\');'" >文件夹名称</a>
 
                                     <div class="pull-right hidden-xxs" th:onmouseover="'share(\''+'\',\''+${article.title}+'\',\''+'xxx'+'\',\''+'xxx'+'\');'">
                                        <small class="jiathis_style_32x32">

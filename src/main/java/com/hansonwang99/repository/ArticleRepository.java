@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-    public String baseSql="select a.id as id, a.userId as userId, a.categoryId as categoryId, a.title as title, a.publish_at as publish_at, a.create_time as create_time, a.content as content, a.tag as tag "
+    public String baseSql="select a.id as id, a.userId as userId, a.userName as userName, a.categoryId as categoryId, a.categoryName as categoryName, a.title as title, a.publish_at as publish_at, a.create_time as create_time, a.content as content, a.tag as tag "
             + "from Article a";
 
     @Query(baseSql+ " where a.userId=?1 ")

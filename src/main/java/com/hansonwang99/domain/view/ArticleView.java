@@ -7,7 +7,9 @@ public interface ArticleView {
 
     Long getId();
     Long getUserId();
+    String getUserName();
     Long getCategoryId();
+    String getCategoryName();
     String getTitle();
     Long getPublish_at();
     String getCreate_time();

@@ -362,6 +362,7 @@ function updatePwd() {
 }
 
 function updateIntroduction() {
+
     var ok = $('#updateIntroductionForm').parsley().isValid({force: true});
 	if(!ok){
 		return;

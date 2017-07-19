@@ -77,4 +77,54 @@ public class UserController extends BaseController {
         return result();
     }
 
+    /**
+     * 修改个人简介
+     * @param introduction
+     * @return
+     */
+    @RequestMapping(value = "/updateIntroduction", method = RequestMethod.POST)
+    public ResponseData updateIntroduction(String introduction) {
+        try {
+            User user = getUser();
+            userRepository.setIntroduction(introduction, user.getEmail());
+            user.setIntroduction(introduction);
+            getSession().setAttribute(Const.LOGIN_SESSION_KEY, user);
+            return new ResponseData(ExceptionMsg.SUCCESS, introduction);
+        } catch (Exception e) {
+            // TODO: handle exception
+            logger.error("updateIntroduction failed, ", e);
+            return new ResponseData(ExceptionMsg.FAILED);
+        }
+    }
+
+    /**
+     * 修改昵称
+     * @param userName
+     * @return
+     */
+    @RequestMapping(value = "/updateUserName", method = RequestMethod.POST)
+    public ResponseData updateUserName(String userName) {
+        try {
+            User loginUser = getUser();
+            if(userName.equals(loginUser.getUserName())){
+                return new ResponseData(ExceptionMsg.UserNameSame);
+            }
+            User user = userRepository.findByUserName(userName);
+            if(null != user && user.getUserName().equals(userName)){
+                return new ResponseData(ExceptionMsg.UserNameUsed);
+            }
+            if(userName.length()>12){
+                return new ResponseData(ExceptionMsg.UserNameLengthLimit);
+            }
+            userRepository.setUserName(userName, loginUser.getEmail());
+            loginUser.setUserName(userName);
+            getSession().setAttribute(Const.LOGIN_SESSION_KEY, loginUser);
+            return new ResponseData(ExceptionMsg.SUCCESS, userName);
+        } catch (Exception e) {
+            // TODO: handle exception
+            logger.error("updateUserName failed, ", e);
+            return new ResponseData(ExceptionMsg.FAILED);
+        }
+    }
+
 }

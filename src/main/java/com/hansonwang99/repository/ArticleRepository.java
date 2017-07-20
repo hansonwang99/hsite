@@ -5,7 +5,11 @@ import com.hansonwang99.domain.view.ArticleView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import javax.transaction.Transactional;
 
 /**
  * Created by Administrator on 2017/6/24.
@@ -22,4 +26,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     Page<ArticleView> findArticleByCategoryId(Long categoryId, Pageable pageable);
 
     Article findById( Long articleId );
+
+    @Modifying(clearAutomatically=true)
+    @Transactional
+    @Query("update Article set userName=:userName where userId=:userId")
+    int setArticleUserName(@Param("userName") String userName, @Param("userId") Long userId);
 }

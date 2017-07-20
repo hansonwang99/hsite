@@ -5,6 +5,7 @@ import com.hansonwang99.domain.User;
 import com.hansonwang99.domain.result.ExceptionMsg;
 import com.hansonwang99.domain.result.Response;
 import com.hansonwang99.domain.result.ResponseData;
+import com.hansonwang99.repository.ArticleRepository;
 import com.hansonwang99.repository.UserRepository;
 import com.hansonwang99.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ArticleRepository articleRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseData login(User user,HttpServletResponse response) {
@@ -119,6 +123,7 @@ public class UserController extends BaseController {
             userRepository.setUserName(userName, loginUser.getEmail());
             loginUser.setUserName(userName);
             getSession().setAttribute(Const.LOGIN_SESSION_KEY, loginUser);
+            articleRepository.setArticleUserName( userName, getUserId() ); // 用户昵称一旦修改，所有该用户名下的所有文章的用户名字段也得更新
             return new ResponseData(ExceptionMsg.SUCCESS, userName);
         } catch (Exception e) {
             // TODO: handle exception

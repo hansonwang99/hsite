@@ -8,13 +8,17 @@ import com.hansonwang99.domain.result.ResponseData;
 import com.hansonwang99.repository.ArticleRepository;
 import com.hansonwang99.repository.UserRepository;
 import com.hansonwang99.utils.DateUtils;
+import com.hansonwang99.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 /**
  * Created by hansonwang on 2017/6/18.
@@ -25,6 +29,12 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Value("${static.url}")
+    private String staticUrl;
+
+    @Value("${file.profilepictures.url}")
+    private String fileProfilepicturesUrl;
 
     @Autowired
     private ArticleRepository articleRepository;
@@ -157,6 +167,40 @@ public class UserController extends BaseController {
             return result(ExceptionMsg.FAILED);
         }
         return result();
+    }
+
+    /**
+     * 上传头像
+     * @param dataUrl
+     * @return
+     */
+    @RequestMapping(value = "/uploadHeadPortrait", method = RequestMethod.POST)
+    public ResponseData uploadHeadPortrait(String dataUrl){
+        logger.info("执行 上传头像 开始");
+        try {
+            String filePath=staticUrl+fileProfilepicturesUrl;
+            String fileName= UUID.randomUUID().toString()+".png";
+            String savePath = fileProfilepicturesUrl+fileName;
+            String image = dataUrl;
+            String header ="data:image";
+            String[] imageArr=image.split(",");
+            if(imageArr[0].contains(header)){
+                image=imageArr[1];
+                BASE64Decoder decoder = new BASE64Decoder();
+                byte[] decodedBytes = decoder.decodeBuffer(image);
+                FileUtil.uploadFile(decodedBytes, filePath, fileName);
+                User user = getUser();
+                userRepository.setProfilePicture(savePath, user.getId());
+                user.setProfilePicture(savePath);
+                getSession().setAttribute(Const.LOGIN_SESSION_KEY, user);
+            }
+            logger.info("头像地址：" + savePath);
+            logger.info("执行 上传头像 结束");
+            return new ResponseData(ExceptionMsg.SUCCESS, savePath);
+        } catch (Exception e) {
+            logger.error("upload head portrait failed, ", e);
+            return new ResponseData(ExceptionMsg.FAILED);
+        }
     }
 
 }

@@ -75,6 +75,11 @@ public class IndexController extends BaseController {
         return "index";
     }
 
+    @RequestMapping(value="/uploadHeadPortrait")
+    public String uploadHeadPortrait(){
+        return "user/uploadheadportrait";
+    }
+
     @RequestMapping(value="/newCategory")
     public String newCategory(){
         return "category/newcategory";

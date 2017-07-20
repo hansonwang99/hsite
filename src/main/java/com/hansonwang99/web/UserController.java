@@ -132,4 +132,31 @@ public class UserController extends BaseController {
         }
     }
 
+    /**
+     * 修改密码
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+    public Response updatePassword(String oldPassword, String newPassword) {
+        try {
+            User user = getUser();
+            String password = user.getPassWord();
+            String newpwd = getPwd(newPassword);
+            if(password.equals(getPwd(oldPassword))){
+                userRepository.setNewPassword(newpwd, user.getEmail());
+                user.setPassWord(newpwd);
+                getSession().setAttribute(Const.LOGIN_SESSION_KEY, user);
+            }else{
+                return result(ExceptionMsg.PassWordError);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            logger.error("updatePassword failed, ", e);
+            return result(ExceptionMsg.FAILED);
+        }
+        return result();
+    }
+
 }

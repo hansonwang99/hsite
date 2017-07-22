@@ -191,6 +191,7 @@ public class UserController extends BaseController {
                 FileUtil.uploadFile(decodedBytes, filePath, fileName);
                 User user = getUser();
                 userRepository.setProfilePicture(savePath, user.getId());
+                articleRepository.setArticleProfilePicture( savePath, getUserId() ); // 用户图像一旦修改，数据库中该用户所有文章的profilePicture字段也得更新
                 user.setProfilePicture(savePath);
                 getSession().setAttribute(Const.LOGIN_SESSION_KEY, user);
             }

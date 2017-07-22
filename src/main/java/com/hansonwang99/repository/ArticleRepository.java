@@ -31,4 +31,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Transactional
     @Query("update Article set userName=:userName where userId=:userId")
     int setArticleUserName(@Param("userName") String userName, @Param("userId") Long userId);
+
+    @Modifying(clearAutomatically=true)
+    @Transactional
+    @Query("update Article set profilePicture=:profilePicture where userId=:userId")
+    int setArticleProfilePicture(@Param("profilePicture") String profilePicture, @Param("userId") Long userId);
 }

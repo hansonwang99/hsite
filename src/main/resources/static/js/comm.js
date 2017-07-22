@@ -73,11 +73,12 @@ function getFileName(param){
 	　　}
 
 function locationUrl(url,activeId){
+
 	if(mainActiveId != null && mainActiveId != "" && activeId != null && activeId != ""){
 		$("#"+mainActiveId).removeAttr("class");
 		$("#"+activeId).attr("class", "active");
 		mainActiveId = activeId;
-	}
+    }
 	goUrl(url,null);
 }
 

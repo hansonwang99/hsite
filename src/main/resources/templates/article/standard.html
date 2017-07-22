@@ -154,7 +154,7 @@
 
                                        <div class="hidden-xs resource-card-content">
 
-                                          <p  th:text="${article.title}">description</p>
+                                          <p  th:text="${article.content == null ? '暂无内容' : article.content.length() gt 600 ? article.content.substring(0,600)+'...' : article.content}">description</p>
 
                                        </div>
 

@@ -84,4 +84,9 @@ public class IndexController extends BaseController {
     public String newCategory(){
         return "category/newcategory";
     }
+
+    @RequestMapping(value="/heightsheet")
+    public String getHeightSheet(Model model){
+        return "tool/heightsheet";
+    }
 }

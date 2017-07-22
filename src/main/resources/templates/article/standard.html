@@ -16,7 +16,7 @@
 
                      <li th:each="article : ${articles}" >
 
-                        <a href="javascript:void(0);" class="hidden-xs timeline-badge sharing-user-avatar" th:style="'background-image:url(' + '/img/favicon.png' + ')'" th:onclick="'locationUrl(\'/user/' + ${article.userId} + '/0\',\'\');'" ></a>
+                        <a href="javascript:void(0);" class="hidden-xs timeline-badge sharing-user-avatar" th:style="'background-image:url(' + @{(${article.profilePicture}=='' ? '/img/favicon.png' : ${article.profilePicture})} + ')'" th:onclick="'locationUrl(\'/user/' + ${article.userId} + '/0\',\'\');'" ></a>
 
                         <div class="timeline-panel">
 

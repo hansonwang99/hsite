@@ -15,4 +15,5 @@ public interface ArticleView {
     String getCreate_time();
     String getContent();
     String getTag();
+    String getProfilePicture();
 }

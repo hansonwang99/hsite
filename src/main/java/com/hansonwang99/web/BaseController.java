@@ -56,6 +56,15 @@ public class BaseController {
     	}
         return userName;
     }
+
+    protected String getProfilePicture() {
+
+        String profilePic = "";
+        User user = getUser();
+        if(user!=null)
+            profilePic = user.getProfilePicture();
+        return profilePic;
+    }
     
     protected String getUserIp() {
         String value = getRequest().getHeader("X-Real-IP");

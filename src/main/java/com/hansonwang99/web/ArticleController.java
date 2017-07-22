@@ -40,6 +40,7 @@ public class ArticleController extends BaseController {
             article.setUserId( getUserId() );                    // userId目前从内存中获取
             article.setUserName( getUserName() );
             article.setCategoryName( categoryRepository.findById(article.getCategoryId()).getName() );
+            article.setProfilePicture( getProfilePicture() );
             articleRepository.save( article );
             return new ResponseData(ExceptionMsg.SUCCESS, "/home");
         } catch (Exception e) {

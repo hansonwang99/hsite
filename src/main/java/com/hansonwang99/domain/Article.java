@@ -46,6 +46,9 @@ public class Article implements Serializable {
     @Column(nullable = false)
     private String tag;
 
+    @Column(nullable = false)
+    private String profilePicture;
+
     public Article( ArticleView view ) {
 
         this.id = view.getId();
@@ -58,6 +61,7 @@ public class Article implements Serializable {
         this.create_time = view.getCreate_time();
         this.content = view.getContent();
         this.tag = view.getTag();
+        this.profilePicture = view.getProfilePicture();
     }
 
     public Article() {
@@ -134,4 +138,10 @@ public class Article implements Serializable {
         this.tag = tag;
     }
 
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 }

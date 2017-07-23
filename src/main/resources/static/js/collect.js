@@ -74,10 +74,11 @@ function showAt(name){
 	$(".dropdown-menu").hide();
 }
 
-function onCollect(id,user){
+function onCollect(id,user,key){
 	 $('#modal-remove').modal('show');
 	 $("#collectId").val(id);
 	 $("#userCheck").val(user);
+	 $("#searchkeyForDeleteUse").val(key);
 }
 
 function delCollect(){
@@ -93,8 +94,16 @@ function delCollect(){
 				console.log(errorThrown);
 			},
 			success: function(response){
-				loadCategories();
-                locationUrl($("#forward").val(),"home");
+
+                loadCategories();
+
+				if( null != $("#searchkeyForDeleteUse").val() && '' != $("#searchkeyForDeleteUse").val() ) {
+                    locationUrl('/search/'+$("#searchkeyForDeleteUse").val(),"");
+                    $("#searchkeyForDeleteUse").val('');
+				} else {
+                    locationUrl($("#forward").val(),"home");
+				}
+
 				$('#modal-remove').modal('hide');
 			}
 		});

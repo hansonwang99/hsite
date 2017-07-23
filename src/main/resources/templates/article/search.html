@@ -29,7 +29,7 @@
                                                                 <p class="m0 text-muted"> <small>修改文章的各种属性</small> </p>
                                                             </div>
                                                         </div>
-                                                        </a> <a href="javascript:void(0);"  class="list-group-item" th:onclick="'onCollect(' + ${article.id} + ',\'\');'">
+                                                        </a> <a href="javascript:void(0);"  class="list-group-item" th:onclick="'onCollect(' + ${article.id} + ',\'\'' + ',' + '\'' + ${key} + '\'' +');'">
                                                         <div class="media-box">
                                                             <div class="pull-left"> <em class="fa fa-trash fa-2x fa-fw text-danger"></em> </div>
                                                             <div class="media-box-body clearfix">
@@ -241,7 +241,7 @@
                                                                 <p class="m0 text-muted"> <small>修改文章的各种属性</small> </p>
                                                             </div>
                                                         </div>
-                                                    </a> <a href="javascript:void(0);"  class="list-group-item" th:onclick="'onCollect(' + ${article.id} + ',\'\');'">
+                                                    </a> <a href="javascript:void(0);"  class="list-group-item" th:onclick="'onCollect(' + ${article.id} + ',\'\'' + ',' + ${key} +');'">
                                                         <div class="media-box">
                                                             <div class="pull-left"> <em class="fa fa-trash fa-2x fa-fw text-danger"></em> </div>
                                                             <div class="media-box-body clearfix">
@@ -435,8 +435,11 @@
             <br/>
         </div>
     </div>
+
+    <input type="hidden" name="collectId" id="collectId" />
     <input type="hidden"  id="search-key" th:value="${key}" />
     <input type="hidden" id="userId"  th:value="${userId}" />
+    <input type="hidden" name="searchkeyForDeleteUse" id="searchkeyForDeleteUse" />
 </section>
 </body>
 </html>

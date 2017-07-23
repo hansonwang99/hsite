@@ -13,4 +13,8 @@ public interface ArticleService {
     public List<Article> getArticles( String type, Long userId, Pageable pageable );
 
     public Article getOneArticle( Long articleId );
+
+    public List<Article> searchMy(Long userId,String key,Pageable pageable);
+
+    public List<Article> searchOther(Long userId,String key,Pageable pageable);
 }

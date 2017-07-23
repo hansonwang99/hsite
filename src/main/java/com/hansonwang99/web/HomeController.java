@@ -57,4 +57,24 @@ public class HomeController extends BaseController {
         return "article/article";
     }
 
+    @RequestMapping(value="/search/{key}")
+    public String search(Model model,@RequestParam(value = "page", defaultValue = "0") Integer page,
+                         @RequestParam(value = "size", defaultValue = "20") Integer size, @PathVariable("key") String key) {
+
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = new PageRequest(page, size, sort);
+
+        List<Article> myArticles = articleService.searchMy( getUserId(), key , pageable );
+        List<Article> otherArticles = articleService.searchOther( getUserId(), key, pageable );
+
+        model.addAttribute("myArticles", myArticles);
+        model.addAttribute("otherArticles", otherArticles);
+        model.addAttribute("userId", getUserId());
+        model.addAttribute("mysize", myArticles.size());
+        model.addAttribute("othersize", otherArticles.size());
+        model.addAttribute("key", key);
+
+        return "article/search";
+    }
+
 }

@@ -52,6 +52,18 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findById( articleId );
     }
 
+    public List<Article> searchMy( Long userId, String key, Pageable pageable ){
+
+        Page<ArticleView> articleViews = articleRepository.searchMyByKey( userId, "%"+key+"%", pageable );
+        return convertArticle( articleViews, userId );
+    }
+
+    public List<Article> searchOther( Long userId, String key, Pageable pageable ) {
+
+        Page<ArticleView> articleViews = articleRepository.searchOtherByKey( userId, "%"+key+"%", pageable );
+        return convertArticle( articleViews, userId );
+    }
+
     private List<Article> convertArticle( Page<ArticleView> articleViews, Long userId ) {
 
         List<Article> articleList = new ArrayList<Article>();

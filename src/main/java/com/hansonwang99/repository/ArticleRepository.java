@@ -36,4 +36,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Transactional
     @Query("update Article set profilePicture=:profilePicture where userId=:userId")
     int setArticleProfilePicture(@Param("profilePicture") String profilePicture, @Param("userId") Long userId);
+
+    @Query(baseSql+ " where a.userId=?1 and ( a.title like ?2) ")
+    Page<ArticleView> searchMyByKey(Long userId,String key,Pageable pageable);
+
+    @Query(baseSql+ " where a.userId!=?1 and ( a.title like ?2) ")
+    Page<ArticleView> searchOtherByKey(Long userId,String key,Pageable pageable);
 }

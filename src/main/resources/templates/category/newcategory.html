@@ -50,7 +50,7 @@
 					},
 					success: function(response){
 						if(response.rspCode == '000000'){
-							 loadFavorites();
+							 loadCategories();
 							 toastr.success('创建成功！', '操作成功');
           	    	 	}else{
           	    			toastr.error(response.rspMsg, '操作失败');

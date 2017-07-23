@@ -57,4 +57,19 @@ public class ArticleController extends BaseController {
         return article;
     }
 
+    @RequestMapping(value="/delete/{id}")
+    public Response delete(@PathVariable("id") Long id) {
+
+        Article article = articleRepository.findOne( id );
+        if( null!=article && getUserId().equals(article.getUserId()) ) {
+
+            articleRepository.deleteById( id );
+            if( null != article.getCategoryId() ) {
+                categoryRepository.reduceCountById( article.getCategoryId(), DateUtils.getCurrentTime() );
+            }
+        }
+
+        return result();
+    }
+
 }

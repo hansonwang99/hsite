@@ -42,4 +42,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query(baseSql+ " where a.userId!=?1 and ( a.title like ?2) ")
     Page<ArticleView> searchOtherByKey(Long userId,String key,Pageable pageable);
+
+    @Transactional
+    Long deleteById(Long id);
 }

@@ -44,6 +44,7 @@ public class HomeController extends BaseController {
             }
         }
 
+        model.addAttribute( "type", type );  // 返回到article/standard页面最底部的隐藏input中做记录用
         model.addAttribute("articles", articles);
         model.addAttribute("userId",getUserId());
 

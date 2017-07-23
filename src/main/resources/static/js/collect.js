@@ -86,20 +86,15 @@ function delCollect(){
 			type: 'POST',
 			dataType: 'json',
 			data:"",
-			url: '/collect/delete/'+$("#collectId").val(),
+			url: '/article/delete/'+$("#collectId").val(),
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				console.log(XMLHttpRequest);
 				console.log(textStatus);
 				console.log(errorThrown);
 			},
 			success: function(response){
-				loadFavorites();
-				if("usercontent" == $("#userCheck").val()){
-					userLocationUrl($("#forward").val(),"userAll");
-					loadUserFavorites();
-				}else{
-					locationUrl($("#forward").val(),"home");
-				}
+				loadCategories();
+                locationUrl($("#forward").val(),"home");
 				$('#modal-remove').modal('hide');
 			}
 		});

@@ -25,5 +25,8 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query("update Category c set c.count=(c.count+1),c.lastModifyTime =:lastModifyTime where c.id =:id")
     void increaseCountById(@Param("id") Long id, @Param("lastModifyTime") Long lastModifyTime);
 
-
+    @Modifying(clearAutomatically=true)
+    @Transactional
+    @Query("update Category c set c.count=(c.count-1),c.lastModifyTime =:lastModifyTime where c.id =:id")
+    void reduceCountById(@Param("id") Long id,@Param("lastModifyTime") Long lastModifyTime);
 }

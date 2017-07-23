@@ -3,7 +3,7 @@
  */
 
 $(function() {
-    loadFavorites();
+    loadCategories();
 });
 
 
@@ -36,7 +36,7 @@ function loadConfig(){
     });
 }
 
-function loadFavorites(){
+function loadCategories(){
     $.ajax({
         async: false,
         type: 'POST',

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class IndexController extends BaseController {
 
-    @RequestMapping(value="/index",method= RequestMethod.GET)
+    @RequestMapping(value="/",method= RequestMethod.GET)
     public String index(Model model) {
         return "index";
     }

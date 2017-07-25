@@ -172,10 +172,10 @@ function getCollect(id,user){
             success: function(collect){
                 $("#ctitle").val(collect.title);
                 $("#ctag").val(collect.tag);
-                $("#ccollectId").val(collect.id);
                 $('#modal-changeSharing').modal('show');
                 $("#newFavorites").val("");
                 $("#favoritesSelect").val(collect.categoryId);
+                $("#recordArticleId").val(collect.id);
             }
         });
     }else{

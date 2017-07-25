@@ -45,4 +45,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Transactional
     Long deleteById(Long id);
+
+    @Modifying(clearAutomatically=true)
+    @Transactional
+    @Query("update Article a set a.title =:title,a.tag =:tag,a.categoryId =:categoryId,a.categoryName =:categoryName where a.id =:id")
+    void updateArticlePropertyById(@Param("id") Long id, @Param("title") String title, @Param("tag") String tag, @Param("categoryId") Long categoryId, @Param("categoryName") String categoryName );
 }

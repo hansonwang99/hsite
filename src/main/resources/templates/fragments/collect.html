@@ -36,11 +36,13 @@
 
                <button id="ccollect" class="mt-lg btn btn-primary btn-block" v-on:click="modiSaveArticle">提交</button>
 
-               <input type="hidden" name="id" id="ccollectId" value=""/>
+
 
                </form>
                <p></p>
                <div id="errorMsg" class="alert alert-danger text-center" style="display:none;"></div>
+
+                <input type="hidden" name="recordArticleId" id="recordArticleId" value=""/>
 
             </div>
          </div>
@@ -63,6 +65,7 @@
            methods: {
                modiSaveArticle: function(event){
 
+                   var articleId = $("#recordArticleId").val();
                    var categoryName = $("#newFavorites").val();
                    var categoryId = document.getElementById("favoritesSelect").value
                    var modifyTitle = $("#ctitle").val();
@@ -72,14 +75,21 @@
                        title: modifyTitle,
                        tag: modifyTag,
                        categoryId: categoryId,
-                       categoryName: categoryName
+                       categoryName: categoryName,
+                       id: articleId
                    };
                    this.$http.post('/article/modifyarticleprop',datas).then(function(response){
 
+                       var articleTileId = articleId + "_title";
+                       var articleCategoryNameId = articleId + "_category"
+
                        if(response.data.rspCode == '000000'){
-                           alert("修改成功");
 
                            $('#modal-changeSharing').modal('hide');
+
+                           document.getElementById( articleTileId ).innerHTML = modifyTitle;
+                           document.getElementById( articleCategoryNameId ).innerHTML = response.data.data;
+
                            loadCategories();  // 需要重新加载文章分类导航栏
 
                        }else{

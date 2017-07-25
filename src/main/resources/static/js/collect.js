@@ -173,7 +173,6 @@ function getCollect(id,user){
                 $("#ctitle").val(collect.title);
                 $("#ctag").val(collect.tag);
                 $("#ccollectId").val(collect.id);
-                $("#curl").val(collect.url);
                 $('#modal-changeSharing').modal('show');
                 $("#newFavorites").val("");
             }

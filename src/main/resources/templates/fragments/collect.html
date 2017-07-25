@@ -47,6 +47,9 @@
       </div>
    </div>
 
+   <script th:src="@{/webjars/vue/1.0.24/vue.min.js}"></script>
+   <script th:src="@{/webjars/vue-resource/0.7.0/dist/vue-resource.min.js}"></script>
+
    <script type='text/javascript'>
 
        Vue.http.options.emulateJSON = true;
@@ -61,14 +64,13 @@
                modiSaveArticle: function(event){
 
                    var categoryName = $("#newFavorites").val();
-                   var categoryId = 0;
-                   if( categoryName="" ) {
-                       categoryId = document.getElementById("favoritesSelect").value
-                   }
+                   var categoryId = document.getElementById("favoritesSelect").value
+                   var modifyTitle = $("#ctitle").val();
+                   var modifyTag = $("#ctag").val();
 
                    var datas={
-                       title: this.modititle,
-                       tag: this.moditag,
+                       title: modifyTitle,
+                       tag: modifyTag,
                        categoryId: categoryId,
                        categoryName: categoryName
                    };

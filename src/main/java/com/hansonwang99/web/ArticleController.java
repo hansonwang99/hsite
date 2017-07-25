@@ -83,4 +83,16 @@ public class ArticleController extends BaseController {
         return article;
     }
 
+    @RequestMapping(value = "/modifyarticleprop", method = RequestMethod.POST)
+    public ResponseData modifyArticleProperty( Article article ) {
+
+        try {
+
+            return new ResponseData(ExceptionMsg.SUCCESS, "");
+        } catch (Exception e) {
+            logger.error("modify article property failed, ", e);
+            return new ResponseData(ExceptionMsg.FAILED);
+        }
+    }
+
 }

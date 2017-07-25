@@ -30,40 +30,40 @@ $(function(){
 	     	}
 	    });
 
-	$("#ccollect").click(function(){
-		 if($("#ctitle").val()==""){
-			 $("#errorMsg").text("标题不能为空");
-			 $("#errorMsg").show();
-			 return;
-		 }
-		  $("#errorMsg").hide();
-	  	  $.ajax({
-	  	         type: "POST",
-	  	         url:"/collect/collect",
-	  	         data:$("#collect-form").serialize(),
-	  	         success: function(response) {
-	  	             getPraiseStatus($("#ccollectId").val());
-	  	        	 if(response.rspCode == '000000'){
-	  	        		loadFavorites();
-	  	        		$('#modal-changeSharing').modal('hide');
-						 if($("#userCheck").val()=="usercontent"){
-							 loadUserFavorites();
-						 }
-	  	        	 }else{
-	  	        		$("#errorMsg").text(response.rspMsg);
-	 			 		$("#errorMsg").show();
-	  	        	 }
-	  	         },
-	  	         error: function (jqXHR, textStatus, errorThrown) {
-	  	        	 console.log(jqXHR.responseText);
-	  	        	 console.log(jqXHR.status);
-	  	        	 console.log(jqXHR.readyState);
-	  	        	 console.log(jqXHR.statusText);
-	  	             console.log(textStatus);
-	  	             console.log(errorThrown);
-	  	         }
-	  	  });
-	});
+	// $("#ccollect").click(function(){
+	// 	 if($("#ctitle").val()==""){
+	// 		 $("#errorMsg").text("标题不能为空");
+	// 		 $("#errorMsg").show();
+	// 		 return;
+	// 	 }
+	// 	  $("#errorMsg").hide();
+	//   	  $.ajax({
+	//   	         type: "POST",
+	//   	         url:"/collect/collect",
+	//   	         data:$("#collect-form").serialize(),
+	//   	         success: function(response) {
+	//   	             getPraiseStatus($("#ccollectId").val());
+	//   	        	 if(response.rspCode == '000000'){
+	//   	        		loadFavorites();
+	//   	        		$('#modal-changeSharing').modal('hide');
+	// 					 if($("#userCheck").val()=="usercontent"){
+	// 						 loadUserFavorites();
+	// 					 }
+	//   	        	 }else{
+	//   	        		$("#errorMsg").text(response.rspMsg);
+	//  			 		$("#errorMsg").show();
+	//   	        	 }
+	//   	         },
+	//   	         error: function (jqXHR, textStatus, errorThrown) {
+	//   	        	 console.log(jqXHR.responseText);
+	//   	        	 console.log(jqXHR.status);
+	//   	        	 console.log(jqXHR.readyState);
+	//   	        	 console.log(jqXHR.statusText);
+	//   	             console.log(textStatus);
+	//   	             console.log(errorThrown);
+	//   	         }
+	//   	  });
+	// });
 	smartFavoritesFun($("#ctitle").val(),$("#cdescription").val(),'favoritesSelect');
 });
 

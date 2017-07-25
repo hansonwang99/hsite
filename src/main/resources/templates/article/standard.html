@@ -146,9 +146,9 @@
 
                                        </h4>
 
-                                       <h3 class="hidden-xs media-heading resource-card-title">
+                                       <h3 class="hidden-xs media-heading resource-card-title" >
 
-                                          <a target="_blank" href="javascript:void(0);" th:onclick=" 'locationUrl(\'/showarticle/' + ${article.id} +'\',\'\');' " th:text="${article.title}">title</a>
+                                          <a target="_blank" th:id="${article.id} + '_title'" href="javascript:void(0);" th:onclick=" 'locationUrl(\'/showarticle/' + ${article.id} +'\',\'\');' " th:text="${article.title}">title</a>
 
                                        </h3>
 
@@ -168,7 +168,7 @@
 
                                     <!--<a href="javascript:void(0);" class="normal-color-a ng-binding" th:if="${otherPeople == null}"   th:text="${collect.favoriteName}" th:onclick="'locationUrl(\'/standard/' + ${collect.favoriteId} + '/0\',\''+ ${collect.favoriteId} + '\');'" >文件加名称</a>-->
 
-                                    <a href="javascript:void(0);" class="normal-color-a ng-binding"  th:text="${article.categoryName}" th:onclick="'locationUrl(\'/standard/' + '0' + '/'+${article.userId}+'\',\''+ ${article.categoryId} + '\');'" >文件夹名称</a>
+                                    <a href="javascript:void(0);" class="normal-color-a ng-binding" th:id="${article.id} + '_category'" th:text="${article.categoryName}" th:onclick="'locationUrl(\'/standard/' + '0' + '/'+${article.userId}+'\',\''+ ${article.categoryId} + '\');'" >文件夹名称</a>
 
                                     <div class="pull-right hidden-xxs" th:onmouseover="'share(\''+'\',\''+${article.title}+'\',\''+'xxx'+'\',\''+'xxx'+'\');'">
                                        <small class="jiathis_style_32x32">

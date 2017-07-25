@@ -41,13 +41,13 @@
                <!--</div>-->
                   <!--<label style="font-weight:normal;margin-bottom:0;">-->
                      <!--<input id="type" type="checkbox" name="type" class="mb" value="PRIVATE" /> 私密收藏</label>-->
-               <p class="pt-lg text-center">选择一个收藏夹</p>
+                    <p class="pt-lg text-center">选择一个分类</p>
 
                   <select  name="favoritesId" id="favoritesSelect" class="mb form-control">
                       <option th:each="favorites : ${favoritesList}" th:value="${favorites.id}" th:text="${favorites.name}"  th:selected="(${favorites.id} == ${configObj.defaultFavorties})"></option>
                   </select>
                   <p class="text-center">或者</p>
-                  <input type="text" id="newFavorites" name="newFavorites" class="mb form-control" placeholder="新建分类收藏夹"/>
+                  <input type="text" id="newFavorites" name="newFavorites" class="mb form-control" placeholder="新建分类"/>
 
                <button id="ccollect" class="mt-lg btn btn-primary btn-block">提交</button>
 

@@ -175,6 +175,7 @@ function getCollect(id,user){
                 $("#ccollectId").val(collect.id);
                 $('#modal-changeSharing').modal('show');
                 $("#newFavorites").val("");
+                $("#favoritesSelect").val(collect.categoryId);
             }
         });
     }else{

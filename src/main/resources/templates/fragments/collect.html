@@ -17,39 +17,24 @@
                <div id="show2" style="display:block;">
                		<div class="mb">
                      标题
-                     <textarea name="title" id="ctitle" class="form-control" cols="30" rows="2" placeholder="留空则自动抓取" v-model="modi-title"></textarea>
+                     <textarea name="title" id="ctitle" class="form-control" cols="30" rows="2" placeholder="留空则自动抓取" v-model="modititle"></textarea>
                   </div>
 
                    <div class="mb">
                        标签
-                       <textarea name="tag" id="ctag" class="form-control" cols="30" rows="2" placeholder="留空则自动抓取" v-model="modi-tag"></textarea>
+                       <textarea name="tag" id="ctag" class="form-control" cols="30" rows="2" placeholder="留空则自动抓取" v-model="moditag"></textarea>
                    </div>
                </div>
-               <!--<div class="mb">-->
-                 <!--收藏备注-->
-                  <!--<textarea name="remark" id="cremark" class="form-control" cols="30" rows="2" placeholder="请输入收藏备注，也可以在这里@好友"></textarea>-->
-               <!--</div>-->
-               <!--<div class="pull-right dropdown dropdown-list">-->
-                  <!--<a href="javascript:void(0);" id="atshow" data-toggle="dropdown">-->
-                      <!--at好友 <i class="fa fa-caret-down"></i>-->
-                  <!--</a>-->
-                  <!--<ul class="dropdown-menu" id='atFriend'>-->
-                     <!--<li id='friends'>-->
-                        <!--<a href="javascript:void(0);" onclick="showAt('test')">好友名称</a>-->
-                     <!--</li>-->
-                  <!--</ul>-->
-               <!--</div>-->
-                  <!--<label style="font-weight:normal;margin-bottom:0;">-->
-                     <!--<input id="type" type="checkbox" name="type" class="mb" value="PRIVATE" /> 私密收藏</label>-->
+
                     <p class="pt-lg text-center">选择一个分类</p>
 
                   <select  name="favoritesId" id="favoritesSelect" class="mb form-control">
                       <option th:each="favorites : ${favoritesList}" th:value="${favorites.id}" th:text="${favorites.name}"  th:selected="(${favorites.id} == ${configObj.defaultFavorties})"></option>
                   </select>
                   <p class="text-center">或者</p>
-                  <input type="text" id="newFavorites" name="newFavorites" class="mb form-control" placeholder="新建分类"/>
+                  <input type="text" id="newFavorites" name="newFavorites" class="mb form-control" placeholder="新建分类" v-model="modicategory"/>
 
-               <button id="ccollect" class="mt-lg btn btn-primary btn-block">提交</button>
+               <button id="ccollect" class="mt-lg btn btn-primary btn-block" v-on:click="modiSaveArticle">提交</button>
 
                <input type="hidden" name="id" id="ccollectId" value=""/>
 
@@ -61,5 +46,46 @@
          </div>
       </div>
    </div>
+
+   <script type='text/javascript'>
+
+       Vue.http.options.emulateJSON = true;
+       var savaModifyArticlePropertyPage = new Vue({
+           el: '#savaModifyArticlePropertyPage',
+           data: {
+               'modititle': '',
+               'moditag': '',
+               'modicategory': ''
+           },
+           methods: {
+               modiSaveArticle: function(event){
+
+                   var categoryName = $("#newFavorites").val();
+                   var categoryId = 0;
+                   if( categoryName="" ) {
+                       categoryId = document.getElementById("favoritesSelect").value
+                   }
+
+                   var datas={
+                       title: this.modititle,
+                       tag: this.moditag,
+                       categoryId: categoryId,
+                       categoryName: categoryName
+                   };
+                   this.$http.post('/article/modifyarticleprop',datas).then(function(response){
+
+                       if(response.data.rspCode == '000000'){
+                           alert("修改成功");
+
+                       }else{
+                            alert("修改失败");
+                       }
+                   }, function(response){
+                       console.log('error');
+                   })
+               }
+           }
+       })
+   </script>
 </body>
 </html>

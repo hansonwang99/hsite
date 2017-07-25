@@ -72,4 +72,15 @@ public class ArticleController extends BaseController {
         return result();
     }
 
+    /**
+     * 修改文章属性
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="/detail/{id}")
+    public Article detail(@PathVariable("id") long id) {
+        Article article = articleRepository.findOne(id);
+        return article;
+    }
+
 }

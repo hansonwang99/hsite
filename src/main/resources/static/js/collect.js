@@ -163,7 +163,7 @@ function getCollect(id,user){
             type: 'POST',
             dataType: 'json',
             data:"",
-            url: '/collect/detail/'+id,
+            url: '/article/detail/'+id,
             error : function(XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest);
                 console.log(textStatus);

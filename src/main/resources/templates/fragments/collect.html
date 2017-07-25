@@ -14,54 +14,33 @@
             </div>
             <div class="panel-body">
               <form id="collect-form" class="form-horizontal" onsubmit="return false">
-               <div id="show2" style="display:none;">
+               <div id="show2" style="display:block;">
                		<div class="mb">
                      标题
                      <textarea name="title" id="ctitle" class="form-control" cols="30" rows="2" placeholder="留空则自动抓取"></textarea>
                   </div>
-                  <div class="mb">
-                     简介
-                     <textarea name="description" id="cdescription" class="form-control" cols="30" rows="2" placeholder="留空则自动抓取"></textarea>
-                  </div>
-                  <div class="mb">
-                     图片链接地址
-                     <textarea name="logoUrl" id="clogoUrl" class="form-control" cols="30" rows="2" placeholder="留空则自动抓取" ></textarea>
-                  </div>
+
                    <div class="mb">
-                       所属类别
-                       <select name="category" id="ccategory" class="form-control" >
-                           <option value="">--请选择--</option>
-                           <option value="TRAVEL">旅行</option>
-                           <option value="FOOD">料理</option>
-                           <option value="EXERCISE">健身</option>
-                           <option value="PHOTOGRAPH">摄影</option>
-                           <option value="MUSIC">音乐</option>
-                           <option value="REARING">育儿</option>
-                           <option value="LOVE">恋爱</option>
-                           <option value="BUSINESS">创业</option>
-                           <option value="ART">美术设计</option>
-                           <option value="MANAGER">产品经理</option>
-                           <option value="MARKET">市场营销</option>
-                           <option value="RUNNING">运营</option>
-                       </select>
+                       标签
+                       <textarea name="tag" id="ctag" class="form-control" cols="30" rows="2" placeholder="留空则自动抓取"></textarea>
                    </div>
                </div>
-               <div class="mb">
-                 收藏备注
-                  <textarea name="remark" id="cremark" class="form-control" cols="30" rows="2" placeholder="请输入收藏备注，也可以在这里@好友"></textarea>
-               </div>
-               <div class="pull-right dropdown dropdown-list">
-                  <a href="javascript:void(0);" id="atshow" data-toggle="dropdown">
-                      at好友 <i class="fa fa-caret-down"></i>
-                  </a>
-                  <ul class="dropdown-menu" id='atFriend'>
-                     <li id='friends'>
-                        <a href="javascript:void(0);" onclick="showAt('test')">好友名称</a>
-                     </li>
-                  </ul>
-               </div>
-                  <label style="font-weight:normal;margin-bottom:0;">
-                     <input id="type" type="checkbox" name="type" class="mb" value="PRIVATE" /> 私密收藏</label>
+               <!--<div class="mb">-->
+                 <!--收藏备注-->
+                  <!--<textarea name="remark" id="cremark" class="form-control" cols="30" rows="2" placeholder="请输入收藏备注，也可以在这里@好友"></textarea>-->
+               <!--</div>-->
+               <!--<div class="pull-right dropdown dropdown-list">-->
+                  <!--<a href="javascript:void(0);" id="atshow" data-toggle="dropdown">-->
+                      <!--at好友 <i class="fa fa-caret-down"></i>-->
+                  <!--</a>-->
+                  <!--<ul class="dropdown-menu" id='atFriend'>-->
+                     <!--<li id='friends'>-->
+                        <!--<a href="javascript:void(0);" onclick="showAt('test')">好友名称</a>-->
+                     <!--</li>-->
+                  <!--</ul>-->
+               <!--</div>-->
+                  <!--<label style="font-weight:normal;margin-bottom:0;">-->
+                     <!--<input id="type" type="checkbox" name="type" class="mb" value="PRIVATE" /> 私密收藏</label>-->
                <p class="pt-lg text-center">选择一个收藏夹</p>
                <div class="collect-sort-folder">
                    <div class="collect-tab-head">
@@ -91,16 +70,7 @@
                </form>
                <p></p>
                <div id="errorMsg" class="alert alert-danger text-center" style="display:none;"></div>
-		         <!--<div class="text-right mt-sm" id="model1" >
-		            <a id="changeModel1" href="javascript:void(0);" style="color:#666;text-decoration:none;"> <i class="fa fa-refresh"></i>
-		               	切换成专家模式
-		            </a>
-		         </div>-->
-		         <div class="text-right mt-sm" id="model2" style="display:none;">
-		            <a id="changeModel2" href="javascript:void(0);" style="color:#666;text-decoration:none;"> <i class="fa fa-refresh"></i>
-		               	切换成简单模式
-		            </a>
-		         </div>
+
             </div>
          </div>
       </div>

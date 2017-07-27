@@ -102,4 +102,13 @@ public class HomeController extends BaseController {
         return "user";
     }
 
+
+    @RequestMapping(value="/usercontent/{userId}/{categoryId}")
+    public String userContentShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                  @RequestParam(value = "size", defaultValue = "15") Integer size) {
+
+
+        return "fragments/usercontent";
+    }
+
 }

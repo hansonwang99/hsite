@@ -279,34 +279,8 @@
     <br />
 </div>
 
-<div class="col-lg-9 col-md-9 mt" id="simple"  style="display:none;">
-    <!--<div class="btn-group btn-xs mb pull-right" th:if="${collects.size() > 0}" style="margin-top: -25px;"> <a class="btn btn-xs btn-default" id="simpleBtn"> <span class="icon-layers"></span> </a> <a class="btn btn-xs btn-default active" > <span class="icon-list"></span> </a> </div>-->
-    <table class="table">
-        <tbody id="collectSimpleList">
-            <tr th:each="collect,collectStat : ${collects}">
-                <td><a target="_blank" style="font-size:16px;color:#656565;" th:onclick="'saveLookRecord(' + ${collect.id} + ');'" th:href="@{${collect.url}}" th:text="${collect.title}">Bootstrap中文网</a></td>
-                <td width="10%" class="text-center"><img   th:src="@{(${collect.logoUrl}=='' ? '/img/favicon.png' : ${collect.logoUrl})}"  width="35px" height="25px" alt=""/></td>
-                <td width="15%" class="text-center"><div> <a th:if="${myself=='YES'}" href="javascript:void(0);" class="mr" th:onclick="'getCollect(' + ${collect.id} + ',\'usercontent\');'" > <i class="fa fa-pencil"></i> </a> <a th:if="${myself=='YES'}" href="javascript:void(0);" class="ml" th:onclick="'onCollect(' + ${collect.id} + ',\'usercontent\');'"> <i class="fa fa-trash text-danger"></i> </a> </div></td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- <button id="loadSimpleNoMore" class="mt-lg btn btn-warning btn-block" style="display:none" >没有更多了</button> --> 
-    <!-- <button th:if="${collects.size() == 15}" id="loadSimpleMore" class="mt-lg btn btn-primary btn-block" th:onclick="'loadSimpleMore();'">加载更多</button> -->
-    <button  id="loadSimpleMore" class="mt-lg btn btn-primary btn-block" style="display:none;">加载更多</button>
-    <div id="loadingSimple" class="loading-more"><img src="/img/loading.gif" width="64" height="64" /></div>
-    <br />
-    <br />
-    <br />
-    <input type="hidden" name="forward" id="forward" th:value="'/usercontent/'+0+'/0'" />
-    <input type="hidden" id="userId" />
-    <input type="hidden"  name="pageType" id="pageType" value="myself" />
-    <input type="hidden"  name="pageType" id="pageType" value="otherpublic" />
-    <input type="hidden" id="userContent" value="usercontent"/>
-    <input type="hidden" id="userFavoritesId" />
-    <input type="hidden"  id="loginUser" />
-</div>
-
 </body>
+
 <script type='text/javascript' th:inline="javascript">
 	$(function(){
 		page = 1;

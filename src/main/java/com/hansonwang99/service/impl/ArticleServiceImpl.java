@@ -36,7 +36,9 @@ public class ArticleServiceImpl implements ArticleService {
 
         Page<ArticleView> articleViews = null;
 
-        if ("my".equals(type)) {
+        if ( "my".equals(type) ) {
+            articleViews = articleRepository.findArticleByUserId( userId, pageable );
+        } else if( "user".equals(type) ) {
             articleViews = articleRepository.findArticleByUserId( userId, pageable );
         } else {
             Category category = categoryRepository.findOne( Long.parseLong(type) );

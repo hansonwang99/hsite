@@ -107,6 +107,13 @@ public class HomeController extends BaseController {
     public String userContentShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
                                   @RequestParam(value = "size", defaultValue = "15") Integer size) {
 
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = new PageRequest(page, size, sort);
+
+        List<Article> articleList = articleService.getArticles( "user", userId, pageable );
+
+        model.addAttribute("articles", articleList );
+        model.addAttribute("userId",getUserId());
 
         return "fragments/usercontent";
     }

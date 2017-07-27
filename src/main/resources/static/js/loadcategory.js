@@ -165,52 +165,6 @@ function initFollows(follows){
     $("#friends").append(friends);
 }
 
-function initUserFavorites(favorites){
-    $("DIV[name='userFavDiv']").remove();
-    $("#allFavorites").html("");
-    var totalCount = 0;
-    for(var i=0;i<favorites.length;i++){
-        if("no" == $("#myself").val() && favorites[i].name=="未读列表"){
-            continue;
-        }
-        var favorieshtml = "<div name=\"userFavDiv\" class=\"list-group\">";
-        favorieshtml = favorieshtml + "<a id=\"user"+favorites[i].id+"\" href=\"javascript:void(0);\" class=\"media p mt0 list-group-item\" onclick=\"userLocationUrl('/usercontent/"+$("#userId").val()+"/"+favorites[i].id+"','user"+favorites[i].id+"');\">";
-        favorieshtml = favorieshtml + "<span class=\"media-body\">";
-        favorieshtml = favorieshtml + "<span class=\"media-heading\">";
-        favorieshtml = favorieshtml + " <strong>"+favorites[i].name+"</strong>";
-        if("YES" == $("#myself").val()){
-            favorieshtml = favorieshtml + "<small>"+favorites[i].count +"个收藏</small>";
-            totalCount = totalCount + favorites[i].count;
-        }else{
-            favorieshtml = favorieshtml + "<small>"+favorites[i].publicCount +"个公开收藏</small>";
-            totalCount = totalCount + favorites[i].publicCount;
-        }
-        favorieshtml = favorieshtml + "</span>";
-        favorieshtml = favorieshtml + "</span>";
-        favorieshtml = favorieshtml + "</a></div>";
-        $("#userFavorites").after(favorieshtml);
-    }
-    $("#totalCount").text(totalCount);
-    var allFavorites = "<strong>全部收藏</strong>";
-    if("YES" == $("#myself").val()){
-        allFavorites = allFavorites + "<small>"+totalCount+"个收藏</small>";
-    }else{
-        allFavorites = allFavorites + "<small>"+totalCount+"个公开收藏</small>";
-    }
-    $("#allFavorites").append(allFavorites);
-}
-
-function userLocationUrl(url,activeId){
-    if(mainActiveId != null && mainActiveId != "" && activeId != null && activeId != ""){
-        $("a.media.p.mt0.list-group-item.active").removeClass("active");
-        $("#"+mainActiveId).removeClass("active");
-        $("#"+activeId).attr("class", "media p mt0 list-group-item active");
-        mainActiveId = activeId;
-    }
-    page = 1;
-    userGoUrl(url,null);
-}
-
 
 
 var userXmlhttp = new getXMLObject();

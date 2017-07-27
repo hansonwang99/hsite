@@ -1,6 +1,8 @@
 package com.hansonwang99.web;
 
 import com.hansonwang99.domain.Article;
+import com.hansonwang99.domain.User;
+import com.hansonwang99.repository.UserRepository;
 import com.hansonwang99.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +25,9 @@ public class HomeController extends BaseController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value="/standard/{type}/{userId}")
     public String standard( Model model, @RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -81,6 +86,10 @@ public class HomeController extends BaseController {
     @RequestMapping(value="/user/{userId}/{categoryId}")
     public String userPageShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
                                @RequestParam(value = "size", defaultValue = "15") Integer size) {
+
+        User user = userRepository.findOne( userId );
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = new PageRequest(page, size, sort);
 
 
         return "user";

@@ -5,9 +5,10 @@
 <section>
     <div class="content-wrapper">
         <div class="unwrap">
-            <div class="mast" th:style="'background-image:url('+ @{(${user.backgroundPicture} == null ? 'img/profile-bg.jpg': ${user.backgroundPicture})} +')'">
-                <div class="bg-cover"> <a href="javascript:void(0);" th:onclick="'locationUrl(\'/uploadBackground\',\'\');'" id="background">
-                    <div th:if="${user.id == loginUser.id}"> <img src="img/camera.png" alt=""/> <span>上传背景图</span> </div>
+            <div class="mast" th:style="'background-image:url('+ 'img/profile-bg.jpg' +')'">
+                <div class="bg-cover">
+                    <a href="javascript:void(0);" th:onclick="'locationUrl(\'/uploadBackground\',\'\');'" id="background">
+                        <div th:if="${user.id == loginUser.id}"> <img src="img/camera.png" alt=""/> <span>上传背景图</span> </div>
                     </a>
                     <div class="p-xl text-center text-white"> <a href="javascript:void(0);"> <img th:src="${user.profilePicture == null ? 'img/favicon.png':user.profilePicture}" alt="" class="img-thumbnail img-circle thumb128"/></a>
                         <h3 class="m0 mt" th:text="${user.userName}" id="userUserName">用户昵称</h3>
@@ -24,11 +25,11 @@
                             <p class="m0"> <span th:if="${myself == 'YES'}">收藏</span> <span th:if="${myself == 'NO'}">公开收藏</span> </p>
                         </div>
                         <div class="col-xs-4 br">
-                            <h3 class="m0" th:text="${follow}">0</h3>
+                            <h3 class="m0" >0</h3>
                             <p class="m0"> <span>关注</span> </p>
                         </div>
                         <div class="col-xs-4">
-                            <h3 class="m0" th:text="${followed}" id="followed">0</h3>
+                            <h3 class="m0" " id="followed">0</h3>
                             <p class="m0"> <span>粉丝</span> </p>
                         </div>
                     </div>
@@ -54,9 +55,11 @@
                 </div>
             </div>
         </div>
+
         <input type="hidden" name="collectId" id="collectId" />
         <input type="hidden"  id="userId" th:value="${user.id}" />
         <input type="hidden" id="myself" th:value="${myself}"/>
+
     </div>
 </section>
 </body>

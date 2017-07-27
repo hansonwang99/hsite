@@ -22,6 +22,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query(baseSql+ " where a.userId=?1 ")
     Page<ArticleView> findArticleByUserId(Long userId, Pageable pageable);
 
+    @Query(baseSql+ " where a.userId=?1 and a.categoryId=?2 ")
+    Page<ArticleView> findArticleByUserIdAndCategoryId(Long userId, Pageable pageable, Long categoryId);
+
     @Query(baseSql+ " where a.categoryId=?1 ")
     Page<ArticleView> findArticleByCategoryId(Long categoryId, Pageable pageable);
 

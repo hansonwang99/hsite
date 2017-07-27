@@ -49,6 +49,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> getArticlesOfCategory( Long userId, Pageable pageable, Long categoryId ) {
+
+        Page<ArticleView> articleViews = null;
+        articleViews = articleRepository.findArticleByUserIdAndCategoryId( userId, pageable, categoryId );
+        return convertArticle( articleViews, userId );
+    }
+
+    @Override
     public Article getOneArticle( Long articleId ) {
 
         return articleRepository.findById( articleId );

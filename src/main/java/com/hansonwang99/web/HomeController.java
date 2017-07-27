@@ -109,8 +109,13 @@ public class HomeController extends BaseController {
 
         Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = new PageRequest(page, size, sort);
+        List<Article> articleList = null;
 
-        List<Article> articleList = articleService.getArticles( "user", userId, pageable );
+        if( 0==categoryId ) {
+            articleList = articleService.getArticles( "user", userId, pageable );
+        } else {
+            articleList = articleService.getArticlesOfCategory( userId, pageable, categoryId );
+        }
 
         model.addAttribute("articles", articleList );
         model.addAttribute("userId",getUserId());

@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head th:include="layout :: htmlhead" th:with="title='favorites'">
 </head>
 <body>
@@ -12,7 +12,7 @@
                     </a>
                     <div class="p-xl text-center text-white"> <a href="javascript:void(0);"> <img th:src="${user.profilePicture == null ? 'img/favicon.png':user.profilePicture}" alt="" class="img-thumbnail img-circle thumb128"/></a>
                         <h3 class="m0 mt" th:text="${user.userName}" id="userUserName">用户昵称</h3>
-                        <p th:if="${myself == 'YES'}" th:text="${user.email}">123456789@qq.com</p>
+                        <p th:text="${user.email}">123456789@qq.com</p>
                         <p th:text="${user.introduction== null ? '暂无简介': user.introduction}" id="userIntroduction">暂无简介</p>
                         <a href="javascript:void(0);" th:if="${myself == 'NO'}" id="follow"></a>
                         <a href="javascript:void(0);" th:if="${myself == 'NO'}" class="btn btn-success" data-toggle="modal" data-target="#modal-letter">私信</a>
@@ -29,7 +29,7 @@
                             <p class="m0"> <span>关注</span> </p>
                         </div>
                         <div class="col-xs-4">
-                            <h3 class="m0" " id="followed">0</h3>
+                            <h3 class="m0"  id="followed">0</h3>
                             <p class="m0"> <span>粉丝</span> </p>
                         </div>
                     </div>
@@ -63,6 +63,7 @@
     </div>
 </section>
 </body>
+
 <script type='text/javascript' th:inline="javascript">
 	$(function(){
 		var isFollow = /*[[${isFollow}]]*/;
@@ -87,8 +88,8 @@
 			$("#simple").hide();
 			$("#showModel").val("standard");
 		});
-		userLocationUrl("/usercontent/"+user.id+"/0","userAll");
-		loadUserFavorites();
+		//userLocationUrl("/usercontent/"+user.id+"/0","userAll");
+		//loadUserFavorites();
 		standardStr = "standard";
 		if(user.id == loginUser.id){
 		    $("#background").attr("class", "camerabtn");

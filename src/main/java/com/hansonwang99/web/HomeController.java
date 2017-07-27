@@ -2,6 +2,7 @@ package com.hansonwang99.web;
 
 import com.hansonwang99.domain.Article;
 import com.hansonwang99.domain.User;
+import com.hansonwang99.domain.enums.IsDelete;
 import com.hansonwang99.repository.UserRepository;
 import com.hansonwang99.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,10 +88,16 @@ public class HomeController extends BaseController {
     public String userPageShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
                                @RequestParam(value = "size", defaultValue = "15") Integer size) {
 
-        User user = userRepository.findOne( userId );
-        Sort sort = new Sort(Sort.Direction.DESC, "id");
-        Pageable pageable = new PageRequest(page, size, sort);
+        User user = userRepository.findOne( userId ); // 从数据库中取出userId用户的所有信息传到前台去
 
+        model.addAttribute("user",user);
+        model.addAttribute("loginUser", getUser() );  // 指的是当前登录的用户
+
+        if( getUserId().longValue() == userId.longValue() ) {
+            model.addAttribute("myself", IsDelete.YES.toString());
+        } else {
+            model.addAttribute("myself",IsDelete.NO.toString());
+        }
 
         return "user";
     }

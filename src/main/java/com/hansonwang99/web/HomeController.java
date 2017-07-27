@@ -78,4 +78,12 @@ public class HomeController extends BaseController {
         return "article/search";
     }
 
+    @RequestMapping(value="/user/{userId}/{categoryId}")
+    public String userPageShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
+                               @RequestParam(value = "size", defaultValue = "15") Integer size) {
+
+
+        return "user";
+    }
+
 }

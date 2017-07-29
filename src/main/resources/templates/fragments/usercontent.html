@@ -175,7 +175,7 @@
 
                                     |
 
-                                    <a th:id="'like' + ${article.id}"  class="sharing-action-button" th:style="'display:' + 'inline-block' + ''"    th:onclick="'changeLike(' + ${article.id} + ');'">
+                                    <a th:id="'like' + ${article.id}"  class="sharing-action-button" th:style="'display:' + 'inline-block' + ''"    onclick="showNotInUseInfo()">
 
                                         <span class="fa fa-thumbs-o-up"></span>
 
@@ -203,7 +203,7 @@
 
                                     |
 
-                                    <a  class="sharing-action-button btn-comment" href="javascript:void(0);" th:onclick="'switchComment(' + ${article.id} + ');'" >
+                                    <a  class="sharing-action-button btn-comment" href="javascript:void(0);" onclick="showNotInUseInfo()" >
 
                                         <span class="fa fa-comment-o"></span>
 

@@ -195,3 +195,25 @@ function share(url,title,description,pic){
 	jiathis_config.hideMore=false;
 
 }
+
+function showNotInUseInfo() {
+	// toastr.info('此功能正在开发中，敬请期待...', '操作成功')
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "1500",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    toastr.info('此功能我的主人正在努力开发中，敬请期待啦拉拉...', 'CodeSheep 温馨提示！')
+}

@@ -207,7 +207,7 @@ function showNotInUseInfo() {
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",
-        "timeOut": "1500",
+        "timeOut": "2000",
         "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
@@ -215,5 +215,5 @@ function showNotInUseInfo() {
         "hideMethod": "fadeOut"
     }
 
-    toastr.info('此功能我的主人正在努力地开发中 ！   宝宝们拭目以待吧，啦拉拉...', 'CodeSheep 温馨提示！')
+    toastr.info('此功能我的主人正在努力地开发中 ！   宝宝们拭目以待吧，啦啦啦...', 'CodeSheep 温馨提示！')
 }

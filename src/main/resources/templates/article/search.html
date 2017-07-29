@@ -103,7 +103,7 @@
 
                                     <!--<a href="javascript:void(0);" class="normal-color-a ng-binding" th:if="${otherPeople == null}"   th:text="${collect.favoriteName}" th:onclick="'locationUrl(\'/standard/' + ${collect.favoriteId} + '/0\',\''+ ${collect.favoriteId} + '\');'" >文件加名称</a>-->
 
-                                    <a href="javascript:void(0);" class="normal-color-a ng-binding" th:id="${article.id} + '_category'" th:text="${article.categoryName}" th:onclick="'locationUrl(\'/standard/' + '0' + '/'+${article.userId}+'\',\''+ ${article.categoryId} + '\');'" >文件夹名称</a>
+                                    <a href="javascript:void(0);" class="normal-color-a ng-binding" th:id="${article.id} + '_category'" th:text="${article.categoryName}" th:onclick="'locationUrl(\'/standard/' + ${article.categoryId} + '/'+${article.userId}+'\',\''+ ${article.categoryId} + '\');'" >文件夹名称</a>
 
                                     <div class="pull-right hidden-xxs" th:onmouseover="'share(\''+'\',\''+${article.title}+'\',\''+'xxx'+'\',\''+'xxx'+'\');'">
                                         <small class="jiathis_style_32x32">
@@ -149,20 +149,6 @@
                                                 <span class="fa fa-comment-o"></span>
 
                                                 <show th:id="'commentS' + ${article.id}" th:text="|评论()|">	 评论(0)</show>
-
-                                            </a>
-
-                                            <if th:if="${userId != article.userId}" >
-
-                                                |
-
-                                            </if>
-
-                                            <a class="sharing-action-button"  th:if="${userId != article.userId}"  th:onclick="'getCollect(' + ${article.id} + ',\'\');'" >
-
-                                                <span class="fa fa-spoon"></span>
-
-                                                收藏
 
                                             </a>
 
@@ -317,7 +303,7 @@
 
                                     <!--<a href="javascript:void(0);" class="normal-color-a ng-binding" th:if="${otherPeople == null}"   th:text="${collect.favoriteName}" th:onclick="'locationUrl(\'/standard/' + ${collect.favoriteId} + '/0\',\''+ ${collect.favoriteId} + '\');'" >文件加名称</a>-->
 
-                                    <a href="javascript:void(0);" class="normal-color-a ng-binding" th:id="${article.id} + '_category'"  th:text="${article.categoryName}" th:onclick="'locationUrl(\'/standard/' + '0' + '/'+${article.userId}+'\',\''+ ${article.categoryId} + '\');'" >文件夹名称</a>
+                                    <a href="javascript:void(0);" class="normal-color-a ng-binding" th:id="${article.id} + '_category'"  th:text="${article.categoryName}" th:onclick="'locationUrl(\'/standard/' + ${article.categoryId} + '/'+${article.userId}+'\',\''+ ${article.categoryId} + '\');'" >文件夹名称</a>
 
                                     <div class="pull-right hidden-xxs" th:onmouseover="'share(\''+'\',\''+${article.title}+'\',\''+'xxx'+'\',\''+'xxx'+'\');'">
                                         <small class="jiathis_style_32x32">
@@ -366,19 +352,7 @@
 
                                             </a>
 
-                                            <if th:if="${userId != article.userId}" >
 
-                                                |
-
-                                            </if>
-
-                                            <a class="sharing-action-button"  th:if="${userId != article.userId}"  th:onclick="'getCollect(' + ${article.id} + ',\'\');'" >
-
-                                                <span class="fa fa-spoon"></span>
-
-                                                收藏
-
-                                            </a>
 
                                         </small>
 

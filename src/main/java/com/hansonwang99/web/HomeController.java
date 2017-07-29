@@ -47,6 +47,8 @@ public class HomeController extends BaseController {
 
             if ( null!=userId && 0==userId ) {
                 articles = articleService.getArticles( type, getUserId(), pageable );
+            } else {
+                articles = articleService.getArticles( type, userId, pageable );
             }
         }
 

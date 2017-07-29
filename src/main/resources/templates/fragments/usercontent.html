@@ -211,20 +211,6 @@
 
                                     </a>
 
-                                    <if th:if="${userId != article.userId}" >
-
-                                        |
-
-                                    </if>
-
-                                    <a class="sharing-action-button"  th:if="${userId != article.userId}"  th:onclick="'getCollect(' + ${article.id} + ',\'\');'" >
-
-                                        <span class="fa fa-spoon"></span>
-
-                                        收藏
-
-                                    </a>
-
                                 </small>
 
                             </div>

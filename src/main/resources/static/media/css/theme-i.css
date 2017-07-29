@@ -52,7 +52,7 @@ body,
   background-color: #186FDC;
   background-image: -webkit-linear-gradient(left, #186FDC 0%, #186FDC 100%);
   background-image: -o-linear-gradient(left, #186FDC 0%, #186FDC 100%);
-  background-image: linear-gradient(to right, #186FDC 0%, #186FDC 100%);
+  background-image: linear-gradient(to right, #1565C0 0%, #1565C0 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2c3e50', endColorstr='#ff2c3e50', GradientType=1);
 }
@@ -85,7 +85,7 @@ body,
    Component: sidebar
  ========================================================================== */
 .sidebar {
-  background-color: #186FDC;
+  background-color: #1565C0;
 }
 .sidebar .nav-heading {
   color: #919da8;
@@ -121,7 +121,7 @@ body,
   border-left-color: #ffffff;
 }
 .sidebar-subnav {
-  background-color: #186FDC;
+  background-color: #1565C0;
 }
 .sidebar-subnav > .sidebar-subnav-header {
   color: #9c9c9c;

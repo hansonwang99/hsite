@@ -215,5 +215,5 @@ function showNotInUseInfo() {
         "hideMethod": "fadeOut"
     }
 
-    toastr.info('此功能我的主人正在努力开发中，敬请期待啦拉拉...', 'CodeSheep 温馨提示！')
+    toastr.info('此功能我的主人正在努力地开发中 ！   宝宝们拭目以待吧，啦拉拉...', 'CodeSheep 温馨提示！')
 }

@@ -30,40 +30,6 @@ $(function(){
 	     	}
 	    });
 
-	// $("#ccollect").click(function(){
-	// 	 if($("#ctitle").val()==""){
-	// 		 $("#errorMsg").text("标题不能为空");
-	// 		 $("#errorMsg").show();
-	// 		 return;
-	// 	 }
-	// 	  $("#errorMsg").hide();
-	//   	  $.ajax({
-	//   	         type: "POST",
-	//   	         url:"/collect/collect",
-	//   	         data:$("#collect-form").serialize(),
-	//   	         success: function(response) {
-	//   	             getPraiseStatus($("#ccollectId").val());
-	//   	        	 if(response.rspCode == '000000'){
-	//   	        		loadFavorites();
-	//   	        		$('#modal-changeSharing').modal('hide');
-	// 					 if($("#userCheck").val()=="usercontent"){
-	// 						 loadUserFavorites();
-	// 					 }
-	//   	        	 }else{
-	//   	        		$("#errorMsg").text(response.rspMsg);
-	//  			 		$("#errorMsg").show();
-	//   	        	 }
-	//   	         },
-	//   	         error: function (jqXHR, textStatus, errorThrown) {
-	//   	        	 console.log(jqXHR.responseText);
-	//   	        	 console.log(jqXHR.status);
-	//   	        	 console.log(jqXHR.readyState);
-	//   	        	 console.log(jqXHR.statusText);
-	//   	             console.log(textStatus);
-	//   	             console.log(errorThrown);
-	//   	         }
-	//   	  });
-	// });
 	smartFavoritesFun($("#ctitle").val(),$("#cdescription").val(),'favoritesSelect');
 });
 
@@ -444,8 +410,9 @@ function replyComment(name,collectId){
 }
 
 
-function loadStandardMore(){
+function loadStandardMore() {
 	var url='';
+	
 	if($("#userFavoritesId").length > 0){
 		url = '/collect/standard/'+$("#pageType").val()+"/" + $("#userFavoritesId").val() ;
 	}else{
@@ -473,9 +440,8 @@ function loadStandardMore(){
 				console.log(errorThrown);
 			},
 			success: function(collects){
+
 				if(collects.length==0){
-					/*$("#loadStandardNoMore").show();*/
-					/*$("#loadStandardMore").hide();*/
 					$("#loadStandardMore").text('没有更多了');
 				}
 				if($("#userContent").val()== 'usercontent'){
@@ -834,15 +800,21 @@ $(function() {
 	var loadingFlag = true;
 
 	$(window).scroll(function() {
-		if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-			if ($('#standard').length >= 1 && $('#simple').length >= 1) {
+
+		if ( $(window).scrollTop() == $(document).height() - $(window).height() ) {
+
+			if ( $('#standard').length >= 1 ) {
+
+
+
 				if ($('#standard').is(':visible')) {
 					if ($('#loadStandardMore').text() == '加载更多') {
 						if (loadingFlag) {
+
 							loadingFlag = false;
 							$('#loadingStandard').show();
 							loadStandardMore();
-							$('#loadingStandard').hide();
+							//$('#loadingStandard').hide();
 							loadingFlag = true;
 						}
 					}

@@ -431,11 +431,9 @@ function loadStandardMore() {
 				if(collects.length==0){
 					$("#loadStandardMore").text('没有更多了');
 				}
-				if($("#userContent").val()== 'usercontent'){
-					listStandardCollect(collects,'collectStandardList','usercontent');
-				}else{
-					listStandardCollect(collects,'collectStandardList','');
-				}
+
+				listStandardCollect(collects,'collectStandardList','');
+
 				page++;
 			}
 		});

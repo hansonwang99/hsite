@@ -412,22 +412,9 @@ function replyComment(name,collectId){
 
 function loadStandardMore() {
 	var url='';
-	
-	if($("#userFavoritesId").length > 0){
-		url = '/collect/standard/'+$("#pageType").val()+"/" + $("#userFavoritesId").val() ;
-	}else{
-		url = '/collect/standard/'+$("#pageType").val()+"/0";
-	}
-	if($("#userId").length > 0){
-		url = url + "/" + $("#userId").val();
-	}else{
-		url = url + "/0";
-	}
-	if($("#pageType").val() == "lookAround"){
-	    url = url + "/" + $("#category").val();
-	}else{
-	    url = url + "/NO";
-	}
+
+	url = '/article/standard/'+$("#pageType").val()+"/0";
+
 	 $.ajax({
 			async: false,
 			type: 'POST',

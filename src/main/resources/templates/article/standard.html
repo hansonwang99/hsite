@@ -271,7 +271,8 @@
 
                     </ul>
 
-                    <button  id="loadStandardMore" class="mt-lg btn btn-primary btn-block" style="display: none" >加载更多</button>
+                  <button th:if="${articles.size() > 8}"  id="loadStandardMoreForShow" class="mt-lg btn btn-primary btn-block" >滚动鼠标滑轮来加载更多...</button>
+                  <button  id="loadStandardMore" class="mt-lg btn btn-primary btn-block" style="display: none" >加载更多</button>
                     <div id="loadingStandard" style="text-align:center;margin:20px;display:none;"><img src="/img/loading.gif" width="64" height="64" /></div>
 					<br />
                     <br />

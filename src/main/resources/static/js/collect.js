@@ -430,7 +430,8 @@ function loadStandardMore() {
 
 				if(collects.length==0){
 					$("#loadStandardMore").text('没有更多了');
-					$("#loadStandardMore").show();
+					//$("#loadStandardMore").show();
+					$("#loadStandardMoreForShow").text("没有更多了");
 				}
 
 				listStandardCollect(collects,'collectStandardList','');
@@ -787,6 +788,8 @@ $(function() {
 	$(window).scroll(function() {
 
 		if ( $(window).scrollTop() == $(document).height() - $(window).height() ) {
+
+
 
 			if ( $('#standard').length >= 1 ) {
 

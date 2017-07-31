@@ -74,6 +74,8 @@ function getFileName(param){
 
 function locationUrl(url,activeId){
 
+	page = 1;  // 每次只要重新点了左侧的菜单，page理应重新计数！！！
+
 	if(mainActiveId != null && mainActiveId != "" && activeId != null && activeId != ""){
 		$("#"+mainActiveId).removeAttr("class");
 		$("#"+activeId).attr("class", "active");

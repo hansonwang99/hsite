@@ -524,7 +524,13 @@ function listStandardCollect(collects,listId,user){
 	var collectStandardList='';
 	var collect = '';
     var collectorUserId='';
-	for(var i=0;i<collects.length;i++){
+	for(var i=0;i<collects.length;i++) {
+
+		var articleContent = collects[i].content==null ? "暂无内容" : collects[i].content;
+		if( articleContent.length>600 ) {
+			articleContent = articleContent.substring( 0, 600 );
+		}
+
         collectorUserId=collects[i].userId;
 		if($("#userId").val() != collects[i].userId){
 			collect = "				  <if> "+
@@ -621,7 +627,7 @@ function listStandardCollect(collects,listId,user){
 		"                  <a target=\"_blank\" id=\""+collects[i].id+"_title\" onclick=\"locationUrl(\'/showarticle/"+collects[i].id+"',\'\');\" href=\"javascript:void(0);\">"+collects[i].title+"</a>"+
 		"               </h3>"+
 		"               <div class=\"hidden-xs resource-card-content\">"+
-		"                  <p>"+collects[i].description+"</p>"+
+		"                  <p>"+articleContent+"</p>"+
 		"               </div>"+
 		"            </div>"+
 		"         </div>"+

@@ -186,4 +186,15 @@ public class ArticleController extends BaseController {
         return myArticles;
     }
 
+    @RequestMapping(value="/searchOther/{key}")
+    public List<Article> searchOther( @RequestParam(value = "page", defaultValue = "0") Integer page,
+                                   @RequestParam(value = "size", defaultValue = "20") Integer size, @PathVariable("key") String key) {
+
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = new PageRequest(page, size, sort);
+
+        List<Article> otherArticles = articleService.searchOther( getUserId(), key, pageable );
+        return otherArticles;
+    }
+
 }

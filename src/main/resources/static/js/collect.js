@@ -487,7 +487,7 @@ function loadOtherMore(){
 			type: 'POST',
 			dataType: 'json',
 			data:'page='+page,
-			url: '/collect/searchOther/'+$("#search-key").val(),
+			url: '/article/searchOther/'+$("#search-key").val(),
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				console.log(XMLHttpRequest);
 				console.log(textStatus);
@@ -495,15 +495,10 @@ function loadOtherMore(){
 			},
 			success: function(collects){
 				if(collects.length==0){
-					/*$("#loadOtherNoMore").show();
-					$("#loadOtherMore").hide();*/
 					moreOther = false;
 				}
-				if($("#userContent").val()== 'usercontent'){
-					listStandardCollect(collects,'otherCollectList','usercontent');
-				}else{
-					listStandardCollect(collects,'otherCollectList','');
-				}
+
+				listStandardCollect(collects,'otherCollectList','');
 				page++;
 			}
 		});

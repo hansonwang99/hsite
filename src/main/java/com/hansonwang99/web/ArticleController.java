@@ -11,6 +11,9 @@ import com.hansonwang99.service.ArticleService;
 import com.hansonwang99.service.CategoryService;
 import com.hansonwang99.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -150,8 +153,26 @@ public class ArticleController extends BaseController {
     public List<Article> standard( @RequestParam(value = "page", defaultValue = "0") Integer page,
                                   @RequestParam(value = "size", defaultValue = "15") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId ) {
 
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = new PageRequest(page, size, sort);
 
-        return null;
+        List<Article> articles = null;
+
+        if ( "my".equals(type) ) {
+
+            if ( null!=userId && 0==userId ) {
+                articles = articleService.getArticles( type, getUserId(), pageable );
+            }
+        } else {
+
+            if ( null!=userId && 0==userId ) {
+                articles = articleService.getArticles( type, getUserId(), pageable );
+            } else {
+                articles = articleService.getArticles( type, userId, pageable );
+            }
+        }
+
+        return articles;
     }
 
 }

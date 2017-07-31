@@ -428,8 +428,11 @@ function loadStandardMore() {
 			},
 			success: function(collects){
 
+				alert( collects.length );
+
 				if(collects.length==0){
 					$("#loadStandardMore").text('没有更多了');
+					$("#loadStandardMore").show();
 				}
 
 				listStandardCollect(collects,'collectStandardList','');
@@ -799,7 +802,7 @@ $(function() {
 							loadingFlag = false;
 							$('#loadingStandard').show();
 							loadStandardMore();
-							//$('#loadingStandard').hide();
+							$('#loadingStandard').hide();
 							loadingFlag = true;
 						}
 					}

@@ -803,17 +803,8 @@ $(function() {
 							loadingFlag = true;
 						}
 					}
-				} else if ($('#simple').is(':visible')) {
-					if ($('#loadSimpleMore').text() == '加载更多') {
-						if (loadingFlag) {
-							loadingFlag = false;
-							$('#loadingSimple').show();
-							loadSimpleMore();
-							$('#loadingSimple').hide();
-							loadingFlag = true;
-						}
-					}
 				}
+				
 			} else if ($('#standard').length >= 1 && $('#simple').length == 0) {
 				if ($('#loadStandardMore').text() == '加载更多') {
 					if (loadingFlag) {

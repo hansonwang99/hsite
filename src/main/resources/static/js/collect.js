@@ -428,8 +428,6 @@ function loadStandardMore() {
 			},
 			success: function(collects){
 
-				alert( collects.length );
-
 				if(collects.length==0){
 					$("#loadStandardMore").text('没有更多了');
 					$("#loadStandardMore").show();
@@ -633,7 +631,7 @@ function listStandardCollect(collects,listId,user){
 		"         </div>"+
 		"         <div class=\"m0\">"+
 		"            <span class=\"icon-folder mr-sm\"></span>"+
-		"            <a onclick=\"locationUrl(\'/standard/"+collects[i].favoriteId+"/"+collects[i].userId+"\',\'"+collects[i].favoriteId+"\');\" class=\"normal-color-a ng-binding\" href=\"javascript:void(0);\">"+collects[i].favoriteName+"</a>"+
+		"            <a id=\""+collects[i].id+"_category\" onclick=\"locationUrl(\'/standard/"+collects[i].categoryId+"/"+collects[i].userId+"\',\'"+collects[i].categoryId+"\');\" class=\"normal-color-a ng-binding\" href=\"javascript:void(0);\">"+collects[i].categoryName+"</a>"+
 		"            <div class=\"pull-right hidden-xxs\" onmouseover=\"share(\'"+collects[i].url+"\',\'"+collects[i].title+"\',\'"+collects[i].description+"\',\'"+collects[i].logoUrl+"\');\">"+
 		"               <small class=\"jiathis_style_32x32\">"+
 		"                  <a href=\"javascript:void(0);\" class=\"jiathis jiathis_txt sharing-action-button\" style=\"font-size: 100%;line-height:18px!important;padding-top:2px;\">"+

@@ -450,16 +450,14 @@ function loadMyMore(){
 			type: 'POST',
 			dataType: 'json',
 			data:'page='+page,
-			url: '/collect/searchMy/'+$("#search-key").val(),
+			url: '/article/searchMy/'+$("#search-key").val(),
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				console.log(XMLHttpRequest);
 				console.log(textStatus);
 				console.log(errorThrown);
 			},
 			success: function(collects){
-				if(collects.length==0){
-					/*$("#loadMyNoMore").show();
-					$("#loadMyMore").hide();*/
+				if(collects.length==0) {
 					moreMy = false;
 				}
 				if($("#userContent").val()== 'usercontent'){
@@ -470,6 +468,8 @@ function loadMyMore(){
 				page++;
 			}
 		});
+
+
 	$('#loadingMy').hide();
 	if(moreMy){
 		$('#loadMyMore').show();

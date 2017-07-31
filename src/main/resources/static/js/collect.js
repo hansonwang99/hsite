@@ -608,17 +608,17 @@ function listStandardCollect(collects,listId,user){
 		"               </div>"+
 		"            </div>"+
 		"         </div>"+
-		"          <div class=\"m0\">"+replaceEmpty(collects[i].remark)+"</div>"+
+		"          "+
 		"         <div class=\"media resource-card-thumbnail\">"+
-		"            <a href=\""+collects[i].url+"\" onclick=\"saveLookRecord("+collects[i].id+");\" target=\"_blank\" class=\"pull-left\">"+
-		"               <div style=\"background-image:url("+(collects[i].logoUrl=='' ? 'img/favicon.png' : collects[i].logoUrl )+")\" class=\"media-object resource-card-image\"></div>"+
+		"            <a target=\"_blank\" class=\"pull-left\">"+
+		"               <div style=\"background-image:url("+ 'img/favicon.png' +")\" class=\"media-object resource-card-image\"></div>"+
 		"            </a>"+
 		"            <div class=\"media-body\">"+
-		"               <h4 class=\"visible-xs media-heading resource-card-title-xs\">"+
-		"                  <a onclick=\"saveLookRecord("+collects[i].id+");\" href=\""+collects[i].url+"\" target=\"_blank\">"+collects[i].title+"</a>"+
-		"               </h4>"+
+		"               "+
+		"                  "+
+		"               "+
 		"               <h3 class=\"hidden-xs media-heading resource-card-title\">"+
-		"                  <a onclick=\"saveLookRecord("+collects[i].id+");\" href=\""+collects[i].url+"\" target=\"_blank\">"+collects[i].title+"</a>"+
+		"                  <a target=\"_blank\" id=\""+collects[i].id+"_title\" onclick=\"locationUrl(\'/showarticle/"+collects[i].id+"',\'\');\" href=\"javascript:void(0);\">"+collects[i].title+"</a>"+
 		"               </h3>"+
 		"               <div class=\"hidden-xs resource-card-content\">"+
 		"                  <p>"+collects[i].description+"</p>"+

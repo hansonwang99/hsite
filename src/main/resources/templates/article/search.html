@@ -199,7 +199,7 @@
             <div class="text-center">
                 <button id="loadMyNoMore" class="btn btn" style="display:none" >没有更多了</button>
                 <button th:if="${mysize == 20}"  id="loadMyMore" class="btn btn-success" th:onclick="'loadMyMore();'">加载更多</button>
-                <div id="loadingMy" class="loading-more"><img src="/img/loading.gif" width="64" height="64" /></div>
+                <div id="loadingMy" class="loading-more" style="display: none"><img src="/img/loading.gif" width="64" height="64" /></div>
             </div>
             <br/>
             <br/>
@@ -402,7 +402,7 @@
             <div class="text-center">
                 <button id="loadOtherNoMore" class="btn btn" style="display:none" >没有更多了</button>
                 <button th:if="${othersize == 20}"  id="loadOtherMore" class="btn btn-success" th:onclick="'loadOtherMore();'">加载更多</button>
-                <div id="loadingOther" class="loading-more"><img src="/img/loading.gif" width="64" height="64" /></div>
+                <div id="loadingOther" class="loading-more" style="display: none"><img src="/img/loading.gif" width="64" height="64" /></div>
             </div>
             <br/>
             <br/>

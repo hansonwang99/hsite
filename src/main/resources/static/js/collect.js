@@ -460,11 +460,9 @@ function loadMyMore(){
 				if(collects.length==0) {
 					moreMy = false;
 				}
-				if($("#userContent").val()== 'usercontent'){
-					listStandardCollect(collects,'myCollectList','usercontent');
-				}else{
-					listStandardCollect(collects,'myCollectList','');
-				}
+
+				listStandardCollect(collects,'myCollectList','');
+
 				page++;
 			}
 		});

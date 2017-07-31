@@ -175,4 +175,15 @@ public class ArticleController extends BaseController {
         return articles;
     }
 
+    @RequestMapping(value="/searchMy/{key}")
+    public List<Article> searchMy( @RequestParam(value = "page", defaultValue = "0") Integer page,
+                                         @RequestParam(value = "size", defaultValue = "20") Integer size, @PathVariable("key") String key) {
+
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = new PageRequest(page, size, sort);
+
+        List<Article> myArticles = articleService.searchMy( getUserId(), key , pageable );
+        return myArticles;
+    }
+
 }

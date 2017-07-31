@@ -632,7 +632,7 @@ function listStandardCollect(collects,listId,user){
 		"         <div class=\"m0\">"+
 		"            <span class=\"icon-folder mr-sm\"></span>"+
 		"            <a id=\""+collects[i].id+"_category\" onclick=\"locationUrl(\'/standard/"+collects[i].categoryId+"/"+collects[i].userId+"\',\'"+collects[i].categoryId+"\');\" class=\"normal-color-a ng-binding\" href=\"javascript:void(0);\">"+collects[i].categoryName+"</a>"+
-		"            <div class=\"pull-right hidden-xxs\" onmouseover=\"share(\'"+collects[i].url+"\',\'"+collects[i].title+"\',\'"+collects[i].description+"\',\'"+collects[i].logoUrl+"\');\">"+
+		"            <div class=\"pull-right hidden-xxs\" onmouseover=\"share(\'"+collects[i].url+"\',\'"+collects[i].title+"\',\'"+"\',\'"+collects[i].logoUrl+"\');\">"+
 		"               <small class=\"jiathis_style_32x32\">"+
 		"                  <a href=\"javascript:void(0);\" class=\"jiathis jiathis_txt sharing-action-button\" style=\"font-size: 100%;line-height:18px!important;padding-top:2px;\">"+
 		"                     <span class=\"fa fa-share-alt\"></span>"+
@@ -641,12 +641,12 @@ function listStandardCollect(collects,listId,user){
 		"				     | "+
 		"                  <a onclick=\"changeLike("+collects[i].id+");\" style=\"display:"+(collects[i].praise? 'none' : 'inline-block')+"\" id=\"like"+collects[i].id+"\" class=\"sharing-action-button btn-praise\">"+
 		"                     <span class=\"fa fa-thumbs-o-up\"></span>"+
-		"                     <show id=\"likeS"+collects[i].id+"\">点赞("+collects[i].praiseCount+")</show>"+
+		"                     <show id=\"likeS"+collects[i].id+"\">点赞</show>"+
 		"                  </a>"+
 		"                   <if  style=\"display:none\"> "+
 		"				     | "+
 		"				  </if> "+
-		"                  <a onclick=\"changeLike("+collects[i].id+");\" style=\"display:"+(collects[i].praise? 'inline-block' : 'none')+"\" id=\"unlike"+collects[i].id+"\" class=\"sharing-action-button\">"+
+		"                  <a onclick=\"changeLike("+collects[i].id+");\" style=\"display:"+(  'none')+"\" id=\"unlike"+collects[i].id+"\" class=\"sharing-action-button\">"+
 		"                     <span class=\"fa fa-thumbs-up\"></span>"+
 		"                  	 <show id=\"unlikeS"+collects[i].id+"\">取消点赞("+collects[i].praiseCount+")</show>"+
 		"                  </a>"+
@@ -655,7 +655,7 @@ function listStandardCollect(collects,listId,user){
 		"                  | "+
 		"                  <a onclick=\"switchComment("+collects[i].id+");\" href=\"javascript:void(0);\" class=\"sharing-action-button btn-comment\">"+
 		"                     <span class=\"fa fa-comment-o\"></span>"+
-		"                     <show id=\"commentS"+collects[i].id+"\">评论("+collects[i].commentCount+")</show>"+
+		"                     <show id=\"commentS"+collects[i].id+"\">评论</show>"+
 		"                  </a>";
 		if($("#userId").val() != collects[i].userId){
 			item=item+"	 <if> "+

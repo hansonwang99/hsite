@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/6/25.
@@ -143,6 +144,14 @@ public class ArticleController extends BaseController {
             logger.error("modify article property failed, ", e);
             return new ResponseData(ExceptionMsg.FAILED);
         }
+    }
+
+    @RequestMapping(value="/standard/{type}/{userId}")
+    public List<Article> standard( @RequestParam(value = "page", defaultValue = "0") Integer page,
+                                  @RequestParam(value = "size", defaultValue = "15") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId ) {
+
+
+        return null;
     }
 
 }

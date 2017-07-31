@@ -804,7 +804,7 @@ $(function() {
 						}
 					}
 				}
-				
+
 			} else if ($('#standard').length >= 1 && $('#simple').length == 0) {
 				if ($('#loadStandardMore').text() == '加载更多') {
 					if (loadingFlag) {

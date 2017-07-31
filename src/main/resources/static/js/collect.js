@@ -413,7 +413,7 @@ function replyComment(name,collectId){
 function loadStandardMore() {
 	var url='';
 
-	url = '/article/standard/'+$("#pageType").val()+"/0";  
+	url = '/article/standard/'+$("#pageType").val()+"/0";
 
 	 $.ajax({
 			async: false,

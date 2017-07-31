@@ -562,9 +562,9 @@ function listStandardCollect(collects,listId,user){
 		"                                    <em class=\"fa fa-pencil-square-o fa-2x fa-fw text-info\"></em>"+
 		"                                 </div>"+
 		"                                 <div class=\"media-box-body clearfix\">"+
-		"                                    <p class=\"m0\">修改收藏</p>"+
+		"                                    <p class=\"m0\">修改文章属性</p>"+
 		"                                    <p class=\"m0 text-muted\">"+
-		"                                       <small>修改收藏的各种属性</small>"+
+		"                                       <small>修改文章的各种属性</small>"+
 		"                                    </p>"+
 		"                                 </div>"+
 		"                              </div>"+
@@ -577,7 +577,7 @@ function listStandardCollect(collects,listId,user){
 		"                                 <div class=\"media-box-body clearfix\">"+
 		"                                    <p class=\"m0\">删除</p>"+
 		"                                    <p class=\"m0 text-muted\">"+
-		"                                       <small>该分享会永久删除</small>"+
+		"                                       <small>该文章会被永久删除！</small>"+
 		"                                    </p>"+
 		"                                 </div>"+
 		"                              </div>"+
@@ -600,7 +600,7 @@ function listStandardCollect(collects,listId,user){
 		if($("#pageType").val() != 'explore'){
 			item=item+
 			"                  "+
-			"                  <small class=\"ml-sm text-muted\">"+collects[i].collectTime+"</small>"
+			"                  <small class=\"ml-sm text-muted\">"+collects[i].create_time+"</small>"
 		}
 		item=item+
 		/*"                  "+

@@ -299,6 +299,26 @@
             methods: {
                 savaarticle: function(event){
 
+                    if( ""==this.title ) {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-center",
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "2000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        toastr.info('请输入文章标题！', 'CodeSheep 温馨提示！')
+                        return;
+                    }
+
                     var editorContentArea = $(window.frames["postContentIframe"].document).find("#editormd>textarea");
                     var content = editorContentArea.val();
                     var categoryId = document.getElementById("postCategory").value
@@ -311,7 +331,7 @@
                     this.$http.post('/article/savaarticle',datas).then(function(response){
 
                         if(response.data.rspCode == '000000'){
-                            alert("保存成功")
+                            alert("保存成功");
                             window.open(response.data.data, '_self');
                         }else{
                             $("#errorMsg").html(response.data.rspMsg);

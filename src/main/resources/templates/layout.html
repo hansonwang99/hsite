@@ -27,7 +27,53 @@
       <!--<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
 
+      <style type="text/css">
+          /* 小火箭css */
+          #gotop1 {
+              width: 60px;
+              position: fixed;
+              bottom: 40px;
+              cursor: pointer;
+              z-index: 99998;
+              right: 50%;
+              margin-right: -700px;
+          }
+          /* 小火箭悬停特效 */
+          #gotop1:hover {
+              animation: rubberBand 1s;
+          }
 
+          @keyframes rubberBand {
+              from {
+                  transform: scale3d(1, 1, 1);
+              }
+
+              30% {
+                  transform: scale3d(1.25, 0.75, 1);
+              }
+
+              40% {
+                  transform: scale3d(0.75, 1.25, 1);
+              }
+
+              50% {
+                  transform: scale3d(1.15, 0.85, 1);
+              }
+
+              65% {
+                  transform: scale3d(.95, 1.05, 1);
+              }
+
+              75% {
+                  transform: scale3d(1.05, .95, 1);
+              }
+
+              to {
+                  transform: scale3d(1, 1, 1);
+              }
+          }
+          /* end 小火箭 */
+      </style>
 
 
   </head>
@@ -94,6 +140,13 @@
         </div>
     </div>
 
+    <div id="shangxia2">
+				<span id="gotop1">
+					<img src="img/huojian.svg" alt="返回顶部小火箭"/>
+                    <!-- <img src="img/rocked.png" alt="返回顶部小火箭"> -->
+				</span>
+    </div>
+
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--<script th:src="@{/webjars/jquery/2.2.4/dist/jquery.min.js}"></script>-->
@@ -153,6 +206,26 @@
 
     <!-- ECharts单文件引入 -->
     <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+
+    <!--为小火箭回到顶部所准备的js-->
+    <script src="http://cdn.bootcss.com/gsap/1.19.0/TweenMax.min.js"></script>
+    <script src="http://cdn.bootcss.com/gsap/1.19.0/plugins/ScrollToPlugin.min.js"></script>
+    <script type="text/javascript">
+        /* 选择你喜欢的速度类型，复制下面的某段代码即可。不明处请咨询：qpjk.cc */
+        $(function() {
+
+            // 返回顶部，绑定gotop1图标和gotop2文字事件
+            $("#gotop1,#gotop2").click(function(e) {
+                TweenMax.to(window, 1.5, {scrollTo:0, ease: Expo.easeInOut});
+                var huojian = new TimelineLite();
+                huojian.to("#gotop1", 1, {rotationY:720, scale:0.6, y:"+=40", ease:  Power4.easeOut})
+                    .to("#gotop1", 1, {y:-1000, opacity:0, ease:  Power4.easeOut}, 0.6)
+                    .to("#gotop1", 1, {y:0, rotationY:0, opacity:1, scale:1, ease: Expo.easeOut, clearProps: "all"}, "1.4");
+            });
+
+        });
+    </script>
+
 
     <script th:inline="javascript">
 

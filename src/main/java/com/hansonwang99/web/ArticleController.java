@@ -44,6 +44,10 @@ public class ArticleController extends BaseController {
 
         try {
 
+            if( ""==article.getTag() ) {
+                article.setTag("默认标签");
+            }
+
             // 每增加一篇文章就需要增加其对应分类下的文章的计数
             categoryRepository.increaseCountById( article.getCategoryId(), DateUtils.getCurrentTime() );
 

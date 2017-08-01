@@ -1,11 +1,16 @@
 package com.hansonwang99.web;
 
 import com.hansonwang99.comm.Const;
+import com.hansonwang99.domain.Category;
+import com.hansonwang99.repository.CategoryRepository;
+import com.hansonwang99.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +19,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class IndexController extends BaseController {
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Resource
+    private CategoryService categoryService;
 
     @RequestMapping(value="/",method= RequestMethod.GET)
     public String index(Model model) {
@@ -38,8 +49,19 @@ public class IndexController extends BaseController {
     @RequestMapping(value="/home",method= RequestMethod.GET)
     public String home(Model model) {
 
+        String defaultCategoryName = "默认分类";
+        Category category = categoryRepository.findByUserIdAndName( getUserId(), defaultCategoryName );
+        if(null != category){
+            logger.info("默认分类已经存在了，无需再创建");
+        }else{
+            try {
+                categoryService.saveCategory(getUserId(), 0l, defaultCategoryName);
+            } catch (Exception e) {
+                logger.error("创建默认分类出现异常：",e);
+            }
+        }
+
         model.addAttribute("user",getUser());
-        System.out.println(getUser().getUserName());
         return "home";
     }
 

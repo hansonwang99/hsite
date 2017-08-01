@@ -151,6 +151,9 @@
 	   	    	    }else{
 	   	    	   		toastr.error(response.rspMsg, '操作失败');
 	   	    	    }
+
+                    var time = 3; //时间,秒
+                    setTimeout('redirect()',time * 1000); //跳转
 	            },  
 	            error: function(XmlHttpRequest, textStatus, errorThrown){  
 	        	   	console.log(XMLHttpRequest);
@@ -162,5 +165,12 @@
       });
    /*]]>*/
    </script>
+
+      <script>
+
+          function redirect(){ //跳转页
+              window.location.href="/home";//指定要跳转到的目标页面
+          }
+      </script>
 </body>
 </html>

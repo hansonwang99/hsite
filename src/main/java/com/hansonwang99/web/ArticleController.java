@@ -10,6 +10,7 @@ import com.hansonwang99.repository.CategoryRepository;
 import com.hansonwang99.service.ArticleService;
 import com.hansonwang99.service.CategoryService;
 import com.hansonwang99.utils.DateUtils;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -39,6 +40,7 @@ public class ArticleController extends BaseController {
     @Resource
     private CategoryService categoryService;
 
+    @ApiOperation(value="保存文章 RC", notes="将用户撰写的文章存到数据库")
     @RequestMapping(value = "/savaarticle", method = RequestMethod.POST)
     public ResponseData create(Article article) {
 
@@ -65,6 +67,7 @@ public class ArticleController extends BaseController {
 
     }
 
+    @ApiOperation(value="取一篇文章 RC", notes="以Standard视图从数据库中取一篇文章")
     @RequestMapping(value = "/fetcharticle/standard/{articleId}", method = RequestMethod.POST)
     public Article fetchOneArticle(@PathVariable("articleId") Long articleId ) {
 
@@ -72,6 +75,7 @@ public class ArticleController extends BaseController {
         return article;
     }
 
+    @ApiOperation(value="删一篇文章 RC", notes="从数据库中删除一篇文章")
     @RequestMapping(value="/delete/{id}", method = RequestMethod.POST)
     public Response delete(@PathVariable("id") Long id) {
 
@@ -92,12 +96,14 @@ public class ArticleController extends BaseController {
      * @param id
      * @return
      */
+    @ApiOperation(value="获取文章属性（小弹窗修改文章属性时） RC", notes="获取文章属性（小弹窗修改文章属性时）")
     @RequestMapping(value="/detail/{id}", method = RequestMethod.POST)
     public Article detail(@PathVariable("id") long id) {
         Article article = articleRepository.findOne(id);
         return article;
     }
 
+    @ApiOperation(value="提交修改文章属性（小弹窗修改文章属性，点击“提交”按钮时） RC", notes="提交修改文章属性（小弹窗修改文章属性，点击“提交”按钮时）")
     @RequestMapping(value = "/modifyarticleprop", method = RequestMethod.POST)
     public ResponseData modifyArticleProperty( Article article ) {
 
@@ -153,6 +159,7 @@ public class ArticleController extends BaseController {
         }
     }
 
+    @ApiOperation(value="获取文章列表 RC", notes="获取文章列表")
     @RequestMapping(value="/standard/{type}/{userId}", method = RequestMethod.POST)
     public List<Article> standard( @RequestParam(value = "page", defaultValue = "0") Integer page,
                                   @RequestParam(value = "size", defaultValue = "15") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId ) {
@@ -179,6 +186,7 @@ public class ArticleController extends BaseController {
         return articles;
     }
 
+    @ApiOperation(value="搜索本人文章并返回列表 RC", notes="搜索本人文章并返回列表")
     @RequestMapping(value="/searchMy/{key}", method = RequestMethod.POST)
     public List<Article> searchMy( @RequestParam(value = "page", defaultValue = "0") Integer page,
                                          @RequestParam(value = "size", defaultValue = "20") Integer size, @PathVariable("key") String key) {
@@ -190,6 +198,7 @@ public class ArticleController extends BaseController {
         return myArticles;
     }
 
+    @ApiOperation(value="搜索其他人文章并返回列表 RC", notes="搜索其他人文章并返回列表")
     @RequestMapping(value="/searchOther/{key}", method = RequestMethod.POST)
     public List<Article> searchOther( @RequestParam(value = "page", defaultValue = "0") Integer page,
                                    @RequestParam(value = "size", defaultValue = "20") Integer size, @PathVariable("key") String key) {

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class HomeController extends BaseController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(value="/standard/{type}/{userId}")
+    @RequestMapping(value="/standard/{type}/{userId}",method = RequestMethod.POST)
     public String standard( Model model, @RequestParam(value = "page", defaultValue = "0") Integer page,
                            @RequestParam(value = "size", defaultValue = "15") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId) {
 
@@ -59,14 +60,14 @@ public class HomeController extends BaseController {
         return "article/standard";
     }
 
-    @RequestMapping(value = "/showarticle/{articleId}")
+    @RequestMapping(value = "/showarticle/{articleId}",method = RequestMethod.POST)
     public String fetchOneArticle( Model model, @PathVariable("articleId") Long articleId ) {
 
         model.addAttribute("articleId", articleId);
         return "article/article";
     }
 
-    @RequestMapping(value="/search/{key}")
+    @RequestMapping(value="/search/{key}",method = RequestMethod.POST)
     public String search(Model model,@RequestParam(value = "page", defaultValue = "0") Integer page,
                          @RequestParam(value = "size", defaultValue = "20") Integer size, @PathVariable("key") String key) {
 
@@ -86,7 +87,7 @@ public class HomeController extends BaseController {
         return "article/search";
     }
 
-    @RequestMapping(value="/user/{userId}/{categoryId}")
+    @RequestMapping(value="/user/{userId}/{categoryId}",method = RequestMethod.POST)
     public String userPageShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
                                @RequestParam(value = "size", defaultValue = "15") Integer size) {
 
@@ -105,7 +106,7 @@ public class HomeController extends BaseController {
     }
 
 
-    @RequestMapping(value="/usercontent/{userId}/{categoryId}")
+    @RequestMapping(value="/usercontent/{userId}/{categoryId}",method = RequestMethod.POST)
     public String userContentShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
                                   @RequestParam(value = "size", defaultValue = "15") Integer size) {
 

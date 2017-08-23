@@ -97,17 +97,17 @@ public class IndexController extends BaseController {
         return "index";
     }
 
-    @RequestMapping(value="/uploadHeadPortrait")
+    @RequestMapping(value="/uploadHeadPortrait",method = RequestMethod.POST)
     public String uploadHeadPortrait(){
         return "user/uploadheadportrait";
     }
 
-    @RequestMapping(value="/newCategory")
+    @RequestMapping(value="/newCategory",method = RequestMethod.POST)
     public String newCategory(){
         return "category/newcategory";
     }
 
-    @RequestMapping(value="/heightsheet")
+    @RequestMapping(value="/heightsheet",method = RequestMethod.POST)
     public String getHeightSheet(Model model){
         return "tool/heightsheet";
     }

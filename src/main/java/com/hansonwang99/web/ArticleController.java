@@ -65,14 +65,14 @@ public class ArticleController extends BaseController {
 
     }
 
-    @RequestMapping(value = "/fetcharticle/standard/{articleId}")
+    @RequestMapping(value = "/fetcharticle/standard/{articleId}", method = RequestMethod.POST)
     public Article fetchOneArticle(@PathVariable("articleId") Long articleId ) {
 
         Article article = articleService.getOneArticle( articleId );
         return article;
     }
 
-    @RequestMapping(value="/delete/{id}")
+    @RequestMapping(value="/delete/{id}", method = RequestMethod.POST)
     public Response delete(@PathVariable("id") Long id) {
 
         Article article = articleRepository.findOne( id );
@@ -92,7 +92,7 @@ public class ArticleController extends BaseController {
      * @param id
      * @return
      */
-    @RequestMapping(value="/detail/{id}")
+    @RequestMapping(value="/detail/{id}", method = RequestMethod.POST)
     public Article detail(@PathVariable("id") long id) {
         Article article = articleRepository.findOne(id);
         return article;
@@ -153,7 +153,7 @@ public class ArticleController extends BaseController {
         }
     }
 
-    @RequestMapping(value="/standard/{type}/{userId}")
+    @RequestMapping(value="/standard/{type}/{userId}", method = RequestMethod.POST)
     public List<Article> standard( @RequestParam(value = "page", defaultValue = "0") Integer page,
                                   @RequestParam(value = "size", defaultValue = "15") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId ) {
 
@@ -179,7 +179,7 @@ public class ArticleController extends BaseController {
         return articles;
     }
 
-    @RequestMapping(value="/searchMy/{key}")
+    @RequestMapping(value="/searchMy/{key}", method = RequestMethod.POST)
     public List<Article> searchMy( @RequestParam(value = "page", defaultValue = "0") Integer page,
                                          @RequestParam(value = "size", defaultValue = "20") Integer size, @PathVariable("key") String key) {
 
@@ -190,7 +190,7 @@ public class ArticleController extends BaseController {
         return myArticles;
     }
 
-    @RequestMapping(value="/searchOther/{key}")
+    @RequestMapping(value="/searchOther/{key}", method = RequestMethod.POST)
     public List<Article> searchOther( @RequestParam(value = "page", defaultValue = "0") Integer page,
                                    @RequestParam(value = "size", defaultValue = "20") Integer size, @PathVariable("key") String key) {
 

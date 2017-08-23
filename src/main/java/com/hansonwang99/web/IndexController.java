@@ -41,11 +41,6 @@ public class IndexController extends BaseController {
         return "layout";
     }
 
-    @RequestMapping(value="/collector",method= RequestMethod.GET)
-    public String collector(Model model) {
-        return "collector";
-    }
-
     @RequestMapping(value="/home",method= RequestMethod.GET)
     public String home(Model model) {
 
@@ -63,16 +58,6 @@ public class IndexController extends BaseController {
 
         model.addAttribute("user",getUser());
         return "home";
-    }
-
-    @RequestMapping(value="/main",method= RequestMethod.GET)
-    public String main(Model model) {
-        return "main";
-    }
-
-    @RequestMapping(value="/post",method= RequestMethod.GET)
-    public String post(Model model) {
-        return "post";
     }
 
     @RequestMapping(value="/write",method= RequestMethod.GET)

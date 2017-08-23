@@ -44,6 +44,8 @@ dependencies {
     compile("org.webjars:vue:1.0.24")
     compile 'org.webjars.bower:vue-resource:0.7.0'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.9.2'
+    compile('io.springfox:springfox-swagger2:2.7.0')
+    compile('io.springfox:springfox-swagger-ui:2.7.0')
 }
 
 dependencies {

@@ -5,6 +5,7 @@ import com.hansonwang99.domain.result.ExceptionMsg;
 import com.hansonwang99.domain.result.Response;
 import com.hansonwang99.repository.CategoryRepository;
 import com.hansonwang99.service.CategoryService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class CategoryController extends BaseController{
 	@Resource
 	private CategoryService categoryService;
 
+	@ApiOperation(value="添加文章分类 RC", notes="添加文章分类")
 	@RequestMapping(value="/add",method= RequestMethod.POST)
 	public Response addCategory(String name){
 		if(StringUtils.isNotBlank(name)){
@@ -47,10 +49,7 @@ public class CategoryController extends BaseController{
 		return result();
 	}
 
-	/**
-	 * 获取文章分类
-	 * @return
-	 */
+	@ApiOperation(value="获取文章分类（用户展示页面的文章分类获取） RC", notes="获取文章分类（用户展示页面的文章分类获取）")
 	@RequestMapping(value = "/getCategory/{userId}", method = RequestMethod.POST)
 	public List<Category> getFavorites(@PathVariable("userId") Long userId) {
 		List<Category> categories = null;

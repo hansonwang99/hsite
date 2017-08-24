@@ -19,4 +19,6 @@ public interface ArticleService {
     public List<Article> searchMy(Long userId,String key,Pageable pageable);
 
     public List<Article> searchOther(Long userId,String key,Pageable pageable);
+
+    public Long getTotalArticleNum();
 }

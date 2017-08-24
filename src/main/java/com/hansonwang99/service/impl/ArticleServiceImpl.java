@@ -24,6 +24,8 @@ import java.util.List;
 @Service(value = "articleService")
 public class ArticleServiceImpl implements ArticleService {
 
+    private Long totalArticleNum = 0l;
+
     @Autowired
     @Resource
     private ArticleRepository articleRepository;
@@ -46,6 +48,7 @@ public class ArticleServiceImpl implements ArticleService {
             articleViews = articleRepository.findArticleByCategoryId( Long.parseLong(type), pageable );
         }
 
+        totalArticleNum = articleViews.getTotalElements();
         return convertArticle( articleViews, userId );
     }
 
@@ -73,6 +76,11 @@ public class ArticleServiceImpl implements ArticleService {
 
         Page<ArticleView> articleViews = articleRepository.searchOtherByKey( userId, "%"+key+"%", pageable );
         return convertArticle( articleViews, userId );
+    }
+
+    @Override
+    public Long getTotalArticleNum() {
+        return totalArticleNum;
     }
 
     private List<Article> convertArticle( Page<ArticleView> articleViews, Long userId ) {

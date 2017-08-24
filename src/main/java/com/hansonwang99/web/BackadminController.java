@@ -27,8 +27,8 @@ public class BackadminController extends BaseController {
     public BackadminResult backadminArticleList(@RequestParam(value = "page", defaultValue = "0") Integer page,
                                                 @RequestParam(value = "size", defaultValue = "10") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId ) {
 
-        Sort sort = new Sort(Sort.Direction.DESC, "id");
-        Pageable pageable = new PageRequest(page, size, sort);
+        Sort sort = new Sort(Sort.Direction.ASC, "id");
+        Pageable pageable = new PageRequest(page-1, size, sort);
 
         List<Article> articles = articleService.getArticles( type, getUserId(), pageable );
 

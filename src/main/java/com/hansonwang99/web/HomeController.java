@@ -5,6 +5,7 @@ import com.hansonwang99.domain.User;
 import com.hansonwang99.domain.enums.IsDelete;
 import com.hansonwang99.repository.UserRepository;
 import com.hansonwang99.service.ArticleService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,7 @@ public class HomeController extends BaseController {
     @Autowired
     private UserRepository userRepository;
 
+    @ApiOperation(value="返回用户文章列表标准视图", notes="返回用户文章列表标准视图")
     @RequestMapping(value="/standard/{type}/{userId}",method = RequestMethod.POST)
     public String standard( Model model, @RequestParam(value = "page", defaultValue = "0") Integer page,
                            @RequestParam(value = "size", defaultValue = "15") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId) {
@@ -60,6 +62,7 @@ public class HomeController extends BaseController {
         return "article/standard";
     }
 
+    @ApiOperation(value="显示特定articleId文章视图", notes="显示特定articleId文章视图")
     @RequestMapping(value = "/showarticle/{articleId}",method = RequestMethod.POST)
     public String fetchOneArticle( Model model, @PathVariable("articleId") Long articleId ) {
 
@@ -67,6 +70,7 @@ public class HomeController extends BaseController {
         return "article/article";
     }
 
+    @ApiOperation(value="显示搜索结果视图", notes="显示搜索结果视图")
     @RequestMapping(value="/search/{key}",method = RequestMethod.POST)
     public String search(Model model,@RequestParam(value = "page", defaultValue = "0") Integer page,
                          @RequestParam(value = "size", defaultValue = "20") Integer size, @PathVariable("key") String key) {
@@ -87,6 +91,7 @@ public class HomeController extends BaseController {
         return "article/search";
     }
 
+    @ApiOperation(value="显示用户个人门户视图", notes="显示用户个人门户视图")
     @RequestMapping(value="/user/{userId}/{categoryId}",method = RequestMethod.POST)
     public String userPageShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
                                @RequestParam(value = "size", defaultValue = "15") Integer size) {
@@ -105,7 +110,7 @@ public class HomeController extends BaseController {
         return "user";
     }
 
-
+    @ApiOperation(value="显示用户个人门户usercontent视图", notes="显示用户个人门户usercontent视图")
     @RequestMapping(value="/usercontent/{userId}/{categoryId}",method = RequestMethod.POST)
     public String userContentShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
                                   @RequestParam(value = "size", defaultValue = "15") Integer size) {

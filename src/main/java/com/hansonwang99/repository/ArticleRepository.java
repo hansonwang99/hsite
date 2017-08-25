@@ -53,4 +53,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Transactional
     @Query("update Article a set a.title =:title,a.tag =:tag,a.categoryId =:categoryId,a.categoryName =:categoryName where a.id =:id")
     void updateArticlePropertyById(@Param("id") Long id, @Param("title") String title, @Param("tag") String tag, @Param("categoryId") Long categoryId, @Param("categoryName") String categoryName );
+
+    @Modifying(clearAutomatically=true)
+    @Transactional
+    @Query("update Article a set a.title =:title,a.tag =:tag,a.categoryId =:categoryId,a.categoryName =:categoryName,a.content =:content where a.id =:id")
+    void updateArticleById(@Param("id") Long id, @Param("title") String title, @Param("tag") String tag, @Param("categoryId") Long categoryId, @Param("categoryName") String categoryName, @Param("content") String content );
 }

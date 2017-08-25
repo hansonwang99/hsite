@@ -1,7 +1,9 @@
 package com.hansonwang99.web;
 
 import com.hansonwang99.domain.Article;
+import com.hansonwang99.domain.Category;
 import com.hansonwang99.domain.result.BackadminResult;
+import com.hansonwang99.repository.CategoryRepository;
 import com.hansonwang99.service.ArticleService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class BackadminController extends BaseController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @ApiOperation(value="获取文章列表(后台管理) RC", notes="获取文章列表(后台管理)")
     @RequestMapping(value="/articlelist/{type}/{userId}", method = RequestMethod.GET)
@@ -46,5 +51,18 @@ public class BackadminController extends BaseController {
     public Article backadminOneArticle(@RequestParam(value = "id") Long id) {
         Article article = articleService.getOneArticle( id );
         return article;
+    }
+
+    @ApiOperation(value="获取所有文章分类（后台管理） RC", notes="获取所有文章分类（后台管理）")
+    @RequestMapping(value = "/getCategory", method = RequestMethod.GET)
+    public List<Category> getCategories() {
+        List<Category> categories = null;
+        try {
+            Long id = getUserId();
+            categories = categoryRepository.findByUserIdOrderByIdDesc(id);
+        } catch (Exception e) {
+            logger.error("getCategory failed, ", e);
+        }
+        return categories;
     }
 }

@@ -22,7 +22,7 @@ public class BackadminController extends BaseController {
     @Autowired
     private ArticleService articleService;
 
-    @ApiOperation(value="获取文章列表 RC", notes="获取文章列表")
+    @ApiOperation(value="获取文章列表(后台管理) RC", notes="获取文章列表(后台管理)")
     @RequestMapping(value="/articlelist/{type}/{userId}", method = RequestMethod.GET)
     public BackadminResult backadminArticleList(@RequestParam(value = "page", defaultValue = "0") Integer page,
                                                 @RequestParam(value = "size", defaultValue = "10") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId ) {
@@ -39,5 +39,12 @@ public class BackadminController extends BaseController {
         backadminResult.setArticles( articles );
 
         return backadminResult;
+    }
+
+    @ApiOperation(value="获取特定ID的文章(后台管理) RC", notes="获取特定ID的文章(后台管理)")
+    @RequestMapping(value="/article", method = RequestMethod.GET)
+    public Article backadminOneArticle(@RequestParam(value = "id") Long id) {
+        Article article = articleService.getOneArticle( id );
+        return article;
     }
 }

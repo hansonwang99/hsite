@@ -39,7 +39,7 @@ public class BackadminController extends BaseController {
     public BackadminResult backadminArticleList(@RequestParam(value = "page", defaultValue = "0") Integer page,
                                                 @RequestParam(value = "size", defaultValue = "10") Integer size, @PathVariable("type") String type, @PathVariable("userId") Long userId ) {
 
-        Sort sort = new Sort(Sort.Direction.ASC, "id");
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = new PageRequest(page-1, size, sort);
 
         List<Article> articles = articleService.getArticles( type, getUserId(), pageable );
@@ -101,6 +101,27 @@ public class BackadminController extends BaseController {
             articleRepository.updateArticleById( articleId, articleTitle, articleTag, articleCategoryId, articleCategoryName, articleContent );
         }catch (Exception e) {
             logger.error("modify article property failed, ", e);
+            return new ResponseData(ExceptionMsg.FAILED);
+        }
+
+        return new ResponseData(ExceptionMsg.SUCCESS);
+    }
+
+    @ApiOperation(value="删除特定ID的文章(后台管理) RC", notes="删除特定ID的文章(后台管理)")
+    @RequestMapping(value="/delete", method = RequestMethod.GET)
+    public ResponseData backadminDelArticleById(@RequestParam(value = "id") Long id) {
+
+        try {
+            Article article = articleService.getOneArticle( id );
+            if( null!=article && getUserId().equals(article.getUserId()) ) {
+
+                articleRepository.deleteById( id );
+                if( null != article.getCategoryId() ) {
+                    categoryRepository.reduceCountById( article.getCategoryId(), DateUtils.getCurrentTime() );
+                }
+            }
+        }catch (Exception e) {
+            logger.error("delete article failed, ", e);
             return new ResponseData(ExceptionMsg.FAILED);
         }
 

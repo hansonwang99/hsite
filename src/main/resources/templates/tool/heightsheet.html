@@ -9,13 +9,24 @@
             <div class="container-fluid">
                 <div class="center-block">
                     <button class="btn btn-success icon-refresh" style="margin-bottom: 6px; margin-left: 40%"> 切换性别</button>
-                    <button class="btn btn-success icon-user" style="margin-bottom: 6px" onclick="changeData()"> 输入身高值</button>
+                    <button class="btn btn-success icon-user" id="paraInput" style="margin-bottom: 6px" onclick="changeData()"> 输入身高值</button>
                 </div>
                <div class="row" id="main" style="max-height: 100%;max-width: 100%;height: 700px">
                </div>
             </div>
          </div>
       </section>
+
+      <script type="text/javascript">
+          $('#paraInput').on('click', function(){
+              layer.open({
+                  type: 1,
+                  skin: 'layui-layer-rim', //加上边框
+                  area: ['420px', '240px'], //宽高
+                  content: ' <form class="form-horizontal"> <fieldset> <div id="legend" class=""> <legend class="">请输入儿童参数</legend> </div>         <div class="control-group">   <label class="control-label" for="input01">姓名：</label> <div class="controls"> <input type="text" placeholder="" class="input-xlarge"> <p class="help-block"></p> </div> </div>  <div class="control-group">   <label class="control-label" for="input01">身高：</label> <div class="controls"> <input type="text" placeholder="" class="input-xlarge"> <p class="help-block"></p> </div> </div><div class="control-group">   <label class="control-label" for="input01">体重：</label> <div class="controls"> <input type="text" placeholder="" class="input-xlarge"> <p class="help-block"></p> </div> </div><div class="control-group"> <label class="control-label">性别</label> <div class="controls">  <label class="radio inline"> <input type="radio" value="男" name="group" checked="checked"> 男 </label> <label class="radio inline"> <input type="radio" value="女" name="group"> 女 </label> </div> </div>    <div class="control-group"> <label class="control-label"></label>   <div class="controls"> <button class="btn btn-success">确定</button> </div> </div>  </fieldset> </form>'
+              });
+          });
+      </script>
 
       <script type="text/javascript">
           

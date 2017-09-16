@@ -1,6 +1,7 @@
 package com.hansonwang99.web;
 
 import com.hansonwang99.domain.Article;
+import com.hansonwang99.domain.enums.ArticleType;
 import com.hansonwang99.domain.Category;
 import com.hansonwang99.domain.result.ExceptionMsg;
 import com.hansonwang99.domain.result.Response;
@@ -209,5 +210,13 @@ public class ArticleController extends BaseController {
         List<Article> otherArticles = articleService.searchOther( getUserId(), key, pageable );
         return otherArticles;
     }
+
+    @ApiOperation(value="设置文章私密与否 RC", notes="设置文章私密与否")
+    @RequestMapping(value="/changePrivacy/{id}/{type}", method = RequestMethod.POST)
+    public Response changePrivacy(@PathVariable("id") long id,@PathVariable("type") ArticleType type) {
+
+        return result();
+    }
+
 
 }

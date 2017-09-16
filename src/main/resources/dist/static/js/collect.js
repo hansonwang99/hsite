@@ -156,7 +156,7 @@ function changePrivacy(id,type){
 			type: 'POST',
 			dataType: 'json',
 			data:"",
-			url: '/collect/changePrivacy/'+id+'/'+type,
+			url: '/article/changePrivacy/'+id+'/'+type,
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				console.log(XMLHttpRequest);
 				console.log(textStatus);

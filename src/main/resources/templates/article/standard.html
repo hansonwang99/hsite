@@ -124,7 +124,7 @@
 
                                           <a th:if="${userId == article.userId}" th:id="'private' + ${article.id}"   class="deco-none"  title="设为私密"  href="javascript:void(0);"  th:style="'display:' + 'none' + ''"  th:onclick="'changePrivacy(' + ${article.id} + ',\'PRIVATE\');'">
 
-                                             <span class="fa fa-lock" style="color: #eee;"></span>
+                                             <span class="fa fa-unlock" style="color: #eee;"></span>
 
                                           </a>
 

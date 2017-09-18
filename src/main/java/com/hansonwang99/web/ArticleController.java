@@ -59,6 +59,7 @@ public class ArticleController extends BaseController {
             article.setUserName( getUserName() );
             article.setCategoryName( categoryRepository.findById(article.getCategoryId()).getName() );
             article.setProfilePicture( getProfilePicture() );
+            article.setType( ArticleType.PUBLIC );               // 新写的文章默认是公开的，后续可以开放，在写文章时让用户选择
             articleRepository.save( article );
             return new ResponseData(ExceptionMsg.SUCCESS, "/home");
         } catch (Exception e) {

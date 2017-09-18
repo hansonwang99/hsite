@@ -195,8 +195,8 @@ function initUserFavorites(favorites){
 			favorieshtml = favorieshtml + "<small>"+favorites[i].count +"个收藏</small>";
 			totalCount = totalCount + favorites[i].count;
 		}else{
-			favorieshtml = favorieshtml + "<small>"+favorites[i].count +"个公开收藏</small>";
-			totalCount = totalCount + favorites[i].count;
+			favorieshtml = favorieshtml + "<small>"+favorites[i].publicCount +"个公开收藏</small>";
+			totalCount = totalCount + favorites[i].publicCount;
 		}
 		favorieshtml = favorieshtml + "</span>";
 		favorieshtml = favorieshtml + "</span>";

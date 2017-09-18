@@ -1,8 +1,10 @@
 package com.hansonwang99.web;
 
 import com.hansonwang99.domain.Category;
+import com.hansonwang99.domain.enums.ArticleType;
 import com.hansonwang99.domain.result.ExceptionMsg;
 import com.hansonwang99.domain.result.Response;
+import com.hansonwang99.repository.ArticleRepository;
 import com.hansonwang99.repository.CategoryRepository;
 import com.hansonwang99.service.CategoryService;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +24,9 @@ public class CategoryController extends BaseController{
 
 	@Autowired
 	private CategoryRepository categoryRepository;
+
+	@Autowired
+	private ArticleRepository articleRepository;
 
 	@Resource
 	private CategoryService categoryService;
@@ -59,6 +64,13 @@ public class CategoryController extends BaseController{
 				id = userId;
 			}
 			categories = categoryRepository.findByUserIdOrderByIdDesc(id);
+
+			if( !getUserId().equals(userId) ) {
+				for( Category categoryTemp : categories ) {
+					categoryTemp.setPublicCount( articleRepository.countByCategoryIdAndType(categoryTemp.getId(), ArticleType.PUBLIC) );
+				}
+			}
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("getCategory failed, ", e);

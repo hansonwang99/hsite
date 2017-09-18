@@ -1,6 +1,7 @@
 package com.hansonwang99.repository;
 
 import com.hansonwang99.domain.Category;
+import com.hansonwang99.domain.enums.ArticleType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

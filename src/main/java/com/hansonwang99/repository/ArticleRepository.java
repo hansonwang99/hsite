@@ -31,6 +31,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     Article findById( Long articleId );
 
+    Long countByCategoryIdAndType(Long categoryId,ArticleType type);
+
     @Modifying(clearAutomatically=true)
     @Transactional
     @Query("update Article set userName=:userName where userId=:userId")

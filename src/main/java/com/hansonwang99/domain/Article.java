@@ -1,11 +1,9 @@
 package com.hansonwang99.domain;
 
+import com.hansonwang99.domain.enums.ArticleType;
 import com.hansonwang99.domain.view.ArticleView;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -34,6 +32,10 @@ public class Article implements Serializable {
     @Column(nullable = false)
     private String title;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
+    private ArticleType type;
+
     @Column(nullable = false)
     private Long publish_at;
 
@@ -57,6 +59,7 @@ public class Article implements Serializable {
         this.categoryId = view.getCategoryId();
         this.categoryName = view.getCategoryName();
         this.title = view.getTitle();
+        this.type = view.getType();
         this.publish_at = view.getPublish_at();
         this.create_time = view.getCreate_time();
         this.content = view.getContent();
@@ -108,6 +111,13 @@ public class Article implements Serializable {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public ArticleType getType() {
+        return type;
+    }
+    public void setType(ArticleType type) {
+        this.type = type;
     }
 
     public Long getPublish_at() {

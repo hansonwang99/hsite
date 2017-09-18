@@ -1,6 +1,7 @@
 package com.hansonwang99.repository;
 
 import com.hansonwang99.domain.Article;
+import com.hansonwang99.domain.enums.ArticleType;
 import com.hansonwang99.domain.view.ArticleView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ import javax.transaction.Transactional;
  */
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-    public String baseSql="select a.id as id, a.userId as userId, a.userName as userName, a.categoryId as categoryId, a.categoryName as categoryName, a.title as title, a.publish_at as publish_at, a.create_time as create_time, a.content as content, a.tag as tag, a.profilePicture as profilePicture "
+    public String baseSql="select a.id as id, a.userId as userId, a.userName as userName, a.categoryId as categoryId, a.categoryName as categoryName, a.title as title, a.type as type, a.publish_at as publish_at, a.create_time as create_time, a.content as content, a.tag as tag, a.profilePicture as profilePicture "
             + "from Article a";
 
     @Query(baseSql+ " where a.userId=?1 ")
@@ -39,6 +40,11 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Transactional
     @Query("update Article set profilePicture=:profilePicture where userId=:userId")
     int setArticleProfilePicture(@Param("profilePicture") String profilePicture, @Param("userId") Long userId);
+
+    @Transactional
+    @Modifying
+    @Query("update Article a set a.type = ?1 where a.id = ?2 and a.userId=?3 ")
+    int modifyArticleTypeByIdAndUserId(ArticleType type, Long id, Long userId);
 
     @Query(baseSql+ " where a.userId=?1 and ( a.title like ?2) ")
     Page<ArticleView> searchMyByKey(Long userId,String key,Pageable pageable);

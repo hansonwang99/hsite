@@ -215,6 +215,7 @@ public class ArticleController extends BaseController {
     @RequestMapping(value="/changePrivacy/{id}/{type}", method = RequestMethod.POST)
     public Response changePrivacy(@PathVariable("id") long id,@PathVariable("type") ArticleType type) {
 
+        articleRepository.modifyArticleTypeByIdAndUserId( type, id, getUserId() );
         return result();
     }
 

@@ -156,7 +156,7 @@ function changePrivacy(id,type){
 			type: 'POST',
 			dataType: 'json',
 			data:"",
-			url: '/collect/changePrivacy/'+id+'/'+type,
+			url: '/article/changePrivacy/'+id+'/'+type,
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				console.log(XMLHttpRequest);
 				console.log(textStatus);
@@ -589,7 +589,7 @@ function listStandardCollect(collects,listId,user){
 		"                  ";
 		if($("#userId").val() == collects[i].userId){
 			item=item+" <a onclick=\"changePrivacy("+collects[i].id+",\'PRIVATE\');\" style=\"display:"+(collects[i].type=='PRIVATE' ? 'none' : 'inline-block')+"\" id=\"private"+collects[i].id+"\" href=\"javascript:void(0);\" title=\"设为私密\" class=\"deco-none\">"+
-			"                <span style=\"color: #eee;\" class=\"fa fa-lock\"></span>"+
+			"                <span style=\"color: rgb(255, 144, 43);\" class=\"fa fa-unlock\"></span>"+
 			"              </a>";
 			item=item+" <a onclick=\"changePrivacy("+collects[i].id+",\'PUBLIC\');\" style=\"display:"+(collects[i].type=='PUBLIC' ? 'none' : 'inline-block')+"\" id=\"public"+collects[i].id+"\" href=\"javascript:void(0);\" title=\"设为公开\" class=\"deco-none\">"+
 			"                <span class=\"fa fa-lock text-warning\"></span>"+

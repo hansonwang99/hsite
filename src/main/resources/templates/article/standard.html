@@ -122,13 +122,13 @@
 
                                           <a href="javascript:void(0);" class="text-muted" th:text="${article.userName}" th:onclick="'locationUrl(\'/user/' + ${article.userId} + '/0\',\'\');'" >user name</a>
 
-                                          <a th:if="${userId == article.userId}" th:id="'private' + ${article.id}"   class="deco-none"  title="设为私密"  href="javascript:void(0);"  th:style="'display:' + (article[i].type=='PRIVATE' ? 'none' : 'inline-block') + ''"  th:onclick="'changePrivacy(' + ${article.id} + ',\'PRIVATE\');'">
+                                          <a th:if="${userId == article.userId}" th:id="'private' + ${article.id}"   class="deco-none"  title="设为私密"  href="javascript:void(0);"  th:style="'display:' + @{(${article.type.toString()}=='PRIVATE' ? 'none' : 'inline-block')} + ''"  th:onclick="'changePrivacy(' + ${article.id} + ',\'PRIVATE\');'">
 
                                              <span class="fa fa-unlock" style="color: rgb(255, 144, 43);"></span>
 
                                           </a>
 
-                                          <a th:if="${userId == article.userId}" th:id="'public' + ${article.id}"  class="deco-none"  title="设为公开"  href="javascript:void(0);"  th:style="'display:' + (article[i].type=='PRIVATE' ? 'inline-block' : 'none') + ''"  th:onclick="'changePrivacy(' + ${article.id} + ',\'PUBLIC\');'">
+                                          <a th:if="${userId == article.userId}" th:id="'public' + ${article.id}"  class="deco-none"  title="设为公开"  href="javascript:void(0);"  th:style="'display:' + @{(${article.type.toString()}=='PUBLIC' ? 'none' : 'inline-block')} + ''"  th:onclick="'changePrivacy(' + ${article.id} + ',\'PUBLIC\');'">
 
                                              <span class="fa fa-lock text-warning"></span>
 

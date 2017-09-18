@@ -2,6 +2,7 @@ package com.hansonwang99.web;
 
 import com.hansonwang99.domain.Article;
 import com.hansonwang99.domain.User;
+import com.hansonwang99.domain.enums.ArticleType;
 import com.hansonwang99.domain.enums.IsDelete;
 import com.hansonwang99.repository.UserRepository;
 import com.hansonwang99.service.ArticleService;
@@ -113,7 +114,7 @@ public class HomeController extends BaseController {
     @ApiOperation(value="显示用户个人门户usercontent视图", notes="显示用户个人门户usercontent视图")
     @RequestMapping(value="/usercontent/{userId}/{categoryId}",method = RequestMethod.POST)
     public String userContentShow(Model model,@PathVariable("userId") Long userId,@PathVariable("categoryId") Long categoryId,@RequestParam(value = "page", defaultValue = "0") Integer page,
-                                  @RequestParam(value = "size", defaultValue = "15") Integer size) {
+                                  @RequestParam(value = "size", defaultValue = "100") Integer size) {
 
         Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = new PageRequest(page, size, sort);
@@ -122,7 +123,7 @@ public class HomeController extends BaseController {
         if( 0==categoryId ) {
             articleList = articleService.getArticles( "user", userId, pageable );
         } else {
-            articleList = articleService.getArticlesOfCategory( userId, pageable, categoryId );
+            articleList = articleService.getArticlesOfCategory( userId, ArticleType.PUBLIC, pageable, categoryId );
         }
 
         model.addAttribute("articles", articleList );

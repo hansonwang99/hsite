@@ -1,7 +1,7 @@
 package com.hansonwang99.service.impl;
 
 import com.hansonwang99.domain.Article;
-import com.hansonwang99.domain.Category;
+import com.hansonwang99.domain.enums.ArticleType;
 import com.hansonwang99.domain.view.ArticleView;
 import com.hansonwang99.repository.ArticleRepository;
 import com.hansonwang99.repository.CategoryRepository;
@@ -13,9 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.persistence.Convert;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -53,10 +51,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> getArticlesOfCategory( Long userId, Pageable pageable, Long categoryId ) {
+    public List<Article> getArticlesOfCategory(Long userId, ArticleType type, Pageable pageable, Long categoryId ) {
 
         Page<ArticleView> articleViews = null;
-        articleViews = articleRepository.findArticleByUserIdAndCategoryId( userId, pageable, categoryId );
+        articleViews = articleRepository.findArticleByUserIdAndCategoryIdAndType( userId, type, pageable, categoryId );
         return convertArticle( articleViews, userId );
     }
 

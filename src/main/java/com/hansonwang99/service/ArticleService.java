@@ -1,6 +1,7 @@
 package com.hansonwang99.service;
 
 import com.hansonwang99.domain.Article;
+import com.hansonwang99.domain.enums.ArticleType;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface ArticleService {
 
     public List<Article> getArticles( String type, Long userId, Pageable pageable );
 
-    public List<Article> getArticlesOfCategory( Long userId, Pageable pageable, Long categoryId );
+    public List<Article> getArticlesOfCategory(Long userId, ArticleType type, Pageable pageable, Long categoryId );
 
     public Article getOneArticle( Long articleId );
 

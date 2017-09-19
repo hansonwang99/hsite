@@ -51,6 +51,19 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> getArticlesByType(String type, ArticleType articleType, Long userId, Pageable pageable) {
+
+        Page<ArticleView> articleViews = null;
+
+        if( "user".equals(type) ) {
+            articleViews = articleRepository.findArticleByUserIdAndType( userId, articleType, pageable );
+        }
+
+        return convertArticle( articleViews, userId );
+    }
+
+
+    @Override
     public List<Article> getArticlesOfCategory(Long userId, ArticleType type, Pageable pageable, Long categoryId ) {
 
         Page<ArticleView> articleViews = null;

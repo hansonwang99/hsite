@@ -121,7 +121,7 @@ public class HomeController extends BaseController {
         List<Article> articleList = null;
 
         if( 0==categoryId ) {
-            articleList = articleService.getArticles( "user", userId, pageable );
+            articleList = articleService.getArticlesByType( "user", ArticleType.PUBLIC, userId, pageable );
         } else {
             articleList = articleService.getArticlesOfCategory( userId, ArticleType.PUBLIC, pageable, categoryId );
         }

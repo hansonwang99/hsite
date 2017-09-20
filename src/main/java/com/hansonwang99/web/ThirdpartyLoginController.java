@@ -2,14 +2,28 @@ package com.hansonwang99.web;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.hansonwang99.comm.Const;
+import com.hansonwang99.domain.Category;
+import com.hansonwang99.domain.User;
+import com.hansonwang99.domain.result.ExceptionMsg;
 import com.hansonwang99.domain.result.Response;
 import com.hansonwang99.domain.result.ResponseData;
+import com.hansonwang99.repository.CategoryRepository;
+import com.hansonwang99.repository.UserRepository;
+import com.hansonwang99.service.CategoryService;
+import com.hansonwang99.utils.DateUtils;
+import com.hansonwang99.utils.HttpRequest;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -22,133 +36,85 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/9/19.
  */
-@RestController
-@RequestMapping("/thirdpartlogin")
+@Controller
+@RequestMapping("/")
 public class ThirdpartyLoginController extends BaseController {
 
-    @ApiOperation(value="github登录 RC", notes="github登录")
-    @RequestMapping(value="/github", method = RequestMethod.GET)
-    public Response githubLogin(@RequestParam(value = "code") String code, HttpServletResponse response ) {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Resource
+    private CategoryService categoryService;
+
+    private int count = 0;
+    private String access_token = "";
+    private String finaRes = "";
+
+    @ApiOperation(value="github登录", notes="github登录")
+    @RequestMapping(value="/githublogin", method = RequestMethod.GET)
+    public String githubLogin(@RequestParam(value = "code") String code, HttpServletResponse response, Model model ) {
+
+        count++;
 
         String client_id = "f15278f5c4d3438a1696";
         String client_secret = "07f6fcfddf1897c18e1ceb819b08751e994ba0ed";
         String redirect_uri = "http://localhost/thirdpartlogin/github";
-        String ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token?client_id=" +client_id+ "&client_secret=" +client_secret+ "&code=" +code+ "&redirect_uri=" +redirect_uri;
+        String ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token?client_id=" +client_id+ "&client_secret=" +client_secret+ "&code=" +code;
 
-        String res = HttpRequest.sendPost(ACCESS_TOKEN_URL,null);
-        String access_token = res.split("&")[0];
-        System.out.println(access_token);
+        if( count<2 ) {
 
-        String USERINFO_URL = "https://api.github.com/user?"+access_token;
-        String result = HttpRequest.sendGet(USERINFO_URL);
-        System.out.println(result);
+            String res = HttpRequest.sendPost(ACCESS_TOKEN_URL,null);
+            access_token = res.split("&")[0];
 
-        JSONObject githubUserInfo = (JSONObject) JSON.parse(result);
+            String USERINFO_URL = "https://api.github.com/user?"+access_token;
+            finaRes = HttpRequest.sendGet(USERINFO_URL);
+            System.out.println(finaRes);
+        } else
+            count = 0;
 
-        return result();
-    }
-}
+        JSONObject githubUserInfo = (JSONObject) JSON.parse(finaRes);
 
-
-class HttpRequest {
-
-    /**
-     * @param req_url
-     * @return
-     */
-    public static String sendGet(String req_url) {
-
-        StringBuffer buffer = new StringBuffer();
-        try {
-            URL url = new URL(req_url);
-            HttpURLConnection httpUrlConn = (HttpURLConnection) url.openConnection();
-
-            httpUrlConn.setDoOutput(false);
-            httpUrlConn.setDoInput(true);
-            httpUrlConn.setUseCaches(false);
-
-            httpUrlConn.setRequestMethod("GET");
-            httpUrlConn.connect();
-
-            // 将返回的输入流转换成字符串
-            InputStream inputStream = httpUrlConn.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            String str = null;
-            while ((str = bufferedReader.readLine()) != null) {
-                buffer.append(str);
-            }
-            //res = new String(buffer.toString().getBytes("iso-8859-1"),"utf-8");
-            bufferedReader.close();
-            inputStreamReader.close();
-            // 释放资源
-            inputStream.close();
-            inputStream = null;
-            httpUrlConn.disconnect();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        String userName  = githubUserInfo.getString("login");
+        String userEmail = githubUserInfo.getString("email");
+        User loginUser = userRepository.findByUserName(userName);
+        if (loginUser == null ) { // 用户不存在，则应该将用户存到数据库中
+            loginUser = new User();
+            loginUser.setUserName( userName );
+            if( null==userEmail )
+                userEmail = "null@null.com";
+            loginUser.setEmail( userEmail );
+            loginUser.setPassWord( "nullpassword" );  // 通过第三方登录的用户是没有密码的，给个默认值
+            loginUser.setCreateTime(DateUtils.getCurrentTime());
+            loginUser.setLastModifyTime(DateUtils.getCurrentTime());
+            loginUser.setProfilePicture( githubUserInfo.getString("avatar_url") );
+            userRepository.save(loginUser);
         }
-        return buffer.toString();
-    }
 
-    /**
-     * 向指定 URL 发送POST方法的请求
-     *
-     * @param url
-     *            发送请求的 URL
-     * @param param
-     *            请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
-     * @return 所代表远程资源的响应结果
-     */
-    public static String sendPost(String url, String param) {
-        PrintWriter out = null;
-        BufferedReader in = null;
-        String result = "";
-        try {
-            URL realUrl = new URL(url);
-            // 打开和URL之间的连接
-            URLConnection conn = realUrl.openConnection();
-            // 设置通用的请求属性
-            conn.setRequestProperty("accept", "*/*");
-            conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent",
-                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-            // 发送POST请求必须设置如下两行
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-            // 获取URLConnection对象对应的输出流
-            out = new PrintWriter(conn.getOutputStream());
-            // 发送请求参数
-            out.print(param);
-            // flush输出流的缓冲
-            out.flush();
-            // 定义BufferedReader输入流来读取URL的响应
-            in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-            String line;
-            while ((line = in.readLine()) != null) {
-                result += line;
-            }
-        } catch (Exception e) {
-            System.out.println("发送 POST 请求出现异常！"+e);
-            e.printStackTrace();
-        }
-        //使用finally块来关闭输出流、输入流
-        finally{
-            try{
-                if(out!=null){
-                    out.close();
-                }
-                if(in!=null){
-                    in.close();
-                }
-            }
-            catch(IOException ex){
-                ex.printStackTrace();
+        loginUser = userRepository.findByUserName(userName);
+
+        Cookie cookie = new Cookie(Const.LOGIN_SESSION_KEY, cookieSign(loginUser.getId().toString()));
+        cookie.setMaxAge(Const.COOKIE_TIMEOUT);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        getSession().setAttribute(Const.LOGIN_SESSION_KEY, loginUser);
+
+        String defaultCategoryName = "默认分类";
+        Category category = categoryRepository.findByUserIdAndName( getUserId(), defaultCategoryName );
+        if(null != category){
+            logger.info("默认分类已经存在了，无需再创建");
+        }else{
+            try {
+                categoryService.saveCategory(getUserId(), 0l, defaultCategoryName);
+            } catch (Exception e) {
+                logger.error("创建默认分类出现异常：",e);
             }
         }
-        return result;
+
+        model.addAttribute("user",getUser());
+
+        return "home";
     }
 }

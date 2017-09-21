@@ -12,6 +12,7 @@
   <link rel="stylesheet" th:href="@{/media/css/bootstrap.css}" id="bscss"></link>
   <link rel="stylesheet" th:href="@{/media/css/app.css}" id="maincss"></link>
   <link rel="stylesheet" th:href="@{/media/css/theme-i.css}" id="maincss"></link>
+    <link rel="stylesheet" th:href="@{/vendor/toastr/toastr.min.css}"/>
  </head>
 
   <body>
@@ -54,10 +55,10 @@
                 <div class=" text-center">
                     <p style="font-size: 16px;"><strong>快 速 登 录</strong></p>
                     <a href="https://github.com/login/oauth/authorize?client_id=f15278f5c4d3438a1696&amp;redirect_uri=http://localhost/githublogin&amp;scope=user&amp;state=codesheep" class="btn btn-primary btn-circle" style="background-color: #2796d9; margin-right: 5px"><i class="fa fa-github" style="font-size: 16px"></i></a>
-                    <a href="https://twitter.com/" class="btn btn-primary btn-circle" style="background-color: #2796d9; margin-right: 5px"><i class="fa fa-weixin" style="font-size: 16px"></i></a>
-                    <a href="https://twitter.com/" class="btn btn-primary btn-circle" style="background-color: #2796d9; margin-right: 5px"><i class="fa fa-qq" style="font-size: 16px"></i></a>
-                    <a href="https://twitter.com/" class="btn btn-primary btn-circle" style="background-color: #2796d9; margin-right: 5px"><i class="fa fa-facebook" style="font-size: 16px"></i></a>
-                    <a href="https://twitter.com/" class="btn btn-primary btn-circle" style="background-color: #2796d9"><i class="fa fa-twitter" style="font-size: 16px"></i></a>
+                    <a onclick="thirdPartyLoginNotice()" class="btn btn-primary btn-circle" style="background-color: #2796d9; margin-right: 5px"><i class="fa fa-weixin" style="font-size: 16px"></i></a>
+                    <a onclick="thirdPartyLoginNotice()" class="btn btn-primary btn-circle" style="background-color: #2796d9; margin-right: 5px"><i class="fa fa-qq" style="font-size: 16px"></i></a>
+                    <a onclick="thirdPartyLoginNotice()" class="btn btn-primary btn-circle" style="background-color: #2796d9; margin-right: 5px"><i class="fa fa-facebook" style="font-size: 16px"></i></a>
+                    <a onclick="thirdPartyLoginNotice()" class="btn btn-primary btn-circle" style="background-color: #2796d9"><i class="fa fa-twitter" style="font-size: 16px"></i></a>
                 </div>
             </div>
          </div>
@@ -76,8 +77,31 @@
    <script th:src="@{/webjars/jquery/2.2.4/dist/jquery.min.js}"></script>   
    <script th:src="@{/webjars/vue/1.0.24/vue.min.js}"></script>   
    <script th:src="@{/webjars/vue-resource/0.7.0/dist/vue-resource.min.js}"></script>
-   <script th:src="@{/vendor/parsleyjs/dist/parsley.min.js}"></script> 
+   <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script th:src="@{/vendor/toastr/toastr.min.js}"></script>
+    <script th:src="@{/vendor/parsleyjs/dist/parsley.min.js}"></script>
    <script type='text/javascript'>
+
+       function thirdPartyLoginNotice() {
+
+           toastr.options = {
+               "closeButton": false,
+               "debug": false,
+               "progressBar": false,
+               "positionClass": "toast-bottom-center",
+               "onclick": null,
+               "showDuration": "300",
+               "hideDuration": "1000",
+               "timeOut": "2000",
+               "extendedTimeOut": "1000",
+               "showEasing": "swing",
+               "hideEasing": "linear",
+               "showMethod": "fadeIn",
+               "hideMethod": "fadeOut"
+           }
+
+           toastr.info('该种登录方式暂未开通，敬请期待...', 'CodeSheep 温馨提示！')
+       }
 
        Vue.http.options.emulateJSON = true;
         var loginPage = new Vue({

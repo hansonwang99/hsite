@@ -54,7 +54,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query(baseSql+ " where a.userId=?1 and ( a.title like ?2) ")
     Page<ArticleView> searchMyByKey(Long userId,String key,Pageable pageable);
 
-    @Query(baseSql+ " where a.userId!=?1 and ( a.title like ?2) ")
+    @Query(baseSql+ " where a.userId!=?1 and a.type='public' and ( a.title like ?2) ")
     Page<ArticleView> searchOtherByKey(Long userId,String key,Pageable pageable);
 
     @Transactional

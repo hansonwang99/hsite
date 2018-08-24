@@ -63,4 +63,4 @@
 
 ![身高百分位表1.jpg](https://upload-images.jianshu.io/upload_images/9824247-af5b530a0f9ca28e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![身高百分位表3.jpg](https://upload-images.jianshu.io/upload_images/9824247-06b34179670c5e2d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)    
+![身高百分位表3.jpg](https://upload-images.jianshu.io/upload_images/9824247-06b34179670c5e2d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)            
